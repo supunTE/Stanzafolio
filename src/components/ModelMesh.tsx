@@ -11,8 +11,9 @@ import {
   Object3DEventMap,
 } from "three";
 import clsx from "clsx";
+import { Ternary } from "../model";
 
-type ModelMeshProps = {
+export type ModelMeshProps = {
   name: string;
   nodes: Mesh<
     BufferGeometry<NormalBufferAttributes>,
@@ -21,6 +22,7 @@ type ModelMeshProps = {
   >;
   hoverColor: string;
   hoverContent?: string | ReactNode;
+  isParentHovered?: Ternary;
 } & MeshProps;
 
 type SpringProps = {
@@ -32,30 +34,36 @@ export default function ModelMesh({
   nodes,
   hoverColor,
   hoverContent,
+  isParentHovered = Ternary.Unknown,
   ...props
 }: ModelMeshProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isChildHovered, setIsChildHovered] = useState(false);
+
+  const isHovered = isParentHovered === Ternary.True || isChildHovered;
 
   const { color } = useSpring<SpringProps>({
     color: isHovered ? hoverColor : "#fff",
     config: {
-      duration: 250,
+      duration: 300,
     },
   });
 
   return (
     <mesh
       {...props}
+      key={name}
       name={name}
       castShadow
       receiveShadow
       geometry={nodes.geometry}
       onPointerOver={(e) => {
-        e.stopPropagation();
-        setIsHovered(true);
+        if (isParentHovered === Ternary.Unknown) {
+          e.stopPropagation();
+        }
+        setIsChildHovered(true);
       }}
-      onPointerOut={() => {
-        setIsHovered(false);
+      onPointerLeave={() => {
+        setIsChildHovered(false);
       }}
     >
       <Html>
@@ -64,6 +72,7 @@ export default function ModelMesh({
             className={clsx(
               "bg-white text-black text-center min-w-72 p-4",
               "rounded-lg shadow-lg border border-black transition-all duration-300",
+              "select-none",
               {
                 "opacity-0": !isHovered,
                 "opacity-100": isHovered,
