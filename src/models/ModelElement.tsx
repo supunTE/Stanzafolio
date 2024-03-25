@@ -1,4 +1,4 @@
-import { animated, config, useSpring } from "@react-spring/three";
+import { animated, useSpring } from "@react-spring/three";
 import { Html } from "@react-three/drei";
 import { MeshProps } from "@react-three/fiber";
 import { ReactNode, useState } from "react";
