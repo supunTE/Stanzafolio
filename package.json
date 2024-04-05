@@ -4,18 +4,25 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.0",
     "@react-spring/three": "9.1.1",
+    "@react-spring/web": "^9.7.3",
     "@react-three/drei": "9.99.6",
     "@react-three/fiber": "^8.15.19",
     "@types/three": "^0.162.0",
+    "eventemitter3": "^5.0.1",
+    "gsap": "^3.12.5",
+    "leva": "^0.9.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive": "^10.0.0",
+    "react-spring": "^9.7.3",
     "three": "^0.162.0"
   },
   "devDependencies": {
