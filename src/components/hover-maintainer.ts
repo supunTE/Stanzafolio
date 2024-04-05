@@ -118,4 +118,12 @@ export class HoverMaintainer {
     if (!this.clickedGroup) return false;
     return this.hoverItemGroups[this.clickedGroup].has(itemName);
   }
+
+  public static checkForClickedGroups(groupNames: string[]): boolean {
+    const isGroupClicked = groupNames.some((groupName) => {
+      return HoverMaintainer.clickedGroup === groupName;
+    });
+
+    return isGroupClicked;
+  }
 }

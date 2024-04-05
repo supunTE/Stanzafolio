@@ -1,12 +1,13 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import { OrbitControls, Stage } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { RoomModel } from "./components/Room";
 import { Leva } from "leva";
 import { HoverItemGroup, HoverMaintainer } from "./components/hover-maintainer";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useBreakpoint } from "./hooks";
+import { RoomLoading } from "./components/Room.loading";
 
 function App() {
   const { isSm } = useBreakpoint("sm");
@@ -63,14 +64,14 @@ function App() {
             </div>
           </>
         )}
-        <h1 className="text-[10rem] flex justify-center items-center w-full h-full absolute">
+        <h1 className="text-[8rem] sm:text-[10rem] flex justify-center items-center p-2 w-full h-full absolute">
           3D Room
         </h1>
         <Leva collapsed={!isSm} hidden={isProd} />
         <Canvas
           eventPrefix="client"
           className="r3f"
-          style={{ background: "transparent", width: "100%" }}
+          style={{ background: "transparent" }}
         >
           <pointLight
             position={[0.15, 6.323, 0.15]}
@@ -78,23 +79,13 @@ function App() {
             intensity={10}
             color="#f1f1f1"
           />
-          <Stage
-            shadows={{
-              type: "contact",
-              blur: 2,
-              opacity: 0.4,
-            }}
-            intensity={1}
-            preset="portrait"
-            adjustCamera={1.5}
-          >
+
+          <Suspense fallback={<RoomLoading />}>
             <RoomModel />
-          </Stage>
+          </Suspense>
           {!isProd && <Perf position="top-left" />}
           <OrbitControls
             makeDefault
-            minDistance={2}
-            maxDistance={10}
             minPolarAngle={Math.PI * 0.2}
             maxPolarAngle={Math.PI * 0.6}
             enablePan={false}

@@ -15,6 +15,7 @@ import { GLTFResult } from "./model-types";
 export type ModelMeshProps = {
   groupKey: string;
   modelKey: keyof GLTFResult["nodes"];
+  lightUpKeys?: string[];
   individualHoveredColor?: string;
   clickedColor: string;
   meshMaterial?: Partial<MeshStandardMaterial>;
@@ -51,12 +52,14 @@ const ModelMesh = forwardRef(
       children = null,
       contentTheme = "light",
       showComingSoonLabel = false,
+      lightUpKeys = ["Bulb"],
       ...props
     }: ModelMeshProps,
     ref: Ref<Mesh>
   ) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const [isLightUp, setIsLightUp] = useState(false);
 
     useEffect(() => {
       const HoverEmitter = HoverMaintainer.registerHoverItem(
@@ -70,6 +73,8 @@ const ModelMesh = forwardRef(
       HoverEmitter.on("hoveredGroupChanged", onHoveredGroupChanged);
 
       const onClickedGroupChanged = () => {
+        setIsLightUp(HoverMaintainer.checkForClickedGroups(lightUpKeys));
+        console.log(HoverMaintainer.checkForClickedGroups(lightUpKeys));
         setIsClicked(HoverMaintainer.isClicked(modelKey));
       };
       HoverEmitter.on("clickedGroupChanged", onClickedGroupChanged);
@@ -79,7 +84,7 @@ const ModelMesh = forwardRef(
         HoverEmitter.off("hoveredGroupChanged", onHoveredGroupChanged);
         HoverEmitter.off("clickedGroupChanged", onClickedGroupChanged);
       };
-    }, [groupKey, modelKey]);
+    }, [groupKey, modelKey, lightUpKeys]);
 
     const { nodes } = useGLTF("/room.glb") as GLTFResult;
 
@@ -93,7 +98,7 @@ const ModelMesh = forwardRef(
       color:
         isIamHovered && individualHoveredColor
           ? individualHoveredColor
-          : isClicked
+          : isClicked || isLightUp
           ? clickedColor
           : "#fff",
       outlineColor: isHovered ? "#555" : "#fff",
