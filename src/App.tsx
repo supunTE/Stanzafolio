@@ -1,20 +1,16 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import {
-  Float,
-  OrbitControls,
-  PresentationControls,
-  Stage,
-} from "@react-three/drei";
+import { OrbitControls, Stage } from "@react-three/drei";
 import { RoomModel } from "./components/Room";
-import { Leva, useControls } from "leva";
+import { Leva } from "leva";
 import { HoverItemGroup, HoverMaintainer } from "./components/hover-maintainer";
 import { useEffect, useState } from "react";
 import { useBreakpoint } from "./hooks";
 
 function App() {
   const { isSm } = useBreakpoint("sm");
+  const isProd = import.meta.env.PROD;
 
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
   const [clickedGroup, setClickedGroup] = useState<string | null>(null);
@@ -58,15 +54,19 @@ function App() {
   return (
     <>
       <div className="cover">
-        <div className="absolute bottom-0 left-0">
-          HoveredGroup {hoveredGroup} <br />
-          ClickedGroup {clickedGroup} <br />
-          RegisteredGroups {JSON.stringify(registeredGroups, null, 2)}
-        </div>
+        {!isProd && (
+          <>
+            <div className="absolute bottom-0 left-0">
+              HoveredGroup {hoveredGroup} <br />
+              ClickedGroup {clickedGroup} <br />
+              RegisteredGroups {JSON.stringify(registeredGroups, null, 2)}
+            </div>
+          </>
+        )}
         <h1 className="text-[10rem] flex justify-center items-center w-full h-full absolute">
           3D Room
         </h1>
-        <Leva collapsed={!isSm} />
+        <Leva collapsed={!isSm} hidden={isProd} />
         <Canvas
           eventPrefix="client"
           className="r3f"
@@ -90,7 +90,7 @@ function App() {
           >
             <RoomModel />
           </Stage>
-          <Perf position="top-left" />
+          {!isProd && <Perf position="top-left" />}
           <OrbitControls
             makeDefault
             minDistance={2}
