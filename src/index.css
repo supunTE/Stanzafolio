@@ -35,6 +35,7 @@ body,
   height: 100%;
   padding: 0;
   user-select: none;
+  overflow: hidden;
 }
 
 body {
@@ -48,5 +49,22 @@ body {
     transform: unset !important;
     width: 100%;
     height: 100%;
+  }
+}
+
+.scrolling-text {
+  position: relative;
+  white-space: nowrap;
+  animation: scroll-left 5s linear infinite alternate-reverse;
+}
+
+@keyframes scroll-left {
+  from {
+    left: 50%;
+    width: 500%;
+  }
+  to {
+    left: -120%;
+    width: 500%;
   }
 }

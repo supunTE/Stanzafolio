@@ -169,13 +169,16 @@ const ModelMesh = forwardRef(
           HoverMaintainer.unsetHoveredGroup();
         }}
       >
-        <Html wrapperClass="messageWrapper" className="w-full h-full">
-          {clickedContent && (
+        {clickedContent && (
+          <Html
+            wrapperClass={clsx("messageWrapper", { hidden: !isClicked })}
+            className={"w-full h-full"}
+          >
             <animatedWeb.div
               className={clsx(
                 "bg-white text-black text-center p-4",
                 "rounded-lg shadow-lg border border-black transition-all duration-300",
-                "absolute bottom-8 inset-x-4 min-w-12 text-sm sm:min-w-72 min:text-md",
+                "absolute z-50 bottom-8 inset-x-4 min-w-12 text-sm sm:min-w-72 min:text-md",
                 "select-none whitespace-pre-line",
                 {
                   " text-white": contentTheme === "dark",
@@ -198,8 +201,8 @@ const ModelMesh = forwardRef(
                 </div>
               )}
             </animatedWeb.div>
-          )}
-        </Html>
+          </Html>
+        )}
         <animated.meshStandardMaterial
           flatShading={true}
           color={color}
