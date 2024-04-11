@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import Draggable from "react-draggable";
 import { iconUrls } from "./icon-urls";
-import { DotsSix, DotsSixVertical } from "@phosphor-icons/react";
+import { DotsSix } from "@phosphor-icons/react";
 import { useBreakpoint } from "../../hooks";
 
 type PCIconProps = {

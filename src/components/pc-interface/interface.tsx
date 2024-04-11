@@ -53,6 +53,8 @@ export function Interface() {
   const [clickedIconName, setClickedIcon] = clickedIcon;
   const [openedWindows, setOpenedWindows] = useState<string[]>([]);
 
+  console.log(clickedIconName);
+
   const addItemToOpenedWindows = (item: string) => {
     setOpenedWindows((prev) => {
       if (prev.includes(item)) {
@@ -60,10 +62,6 @@ export function Interface() {
       }
       return [...prev, item];
     });
-  };
-
-  const removeItemFromOpenedWindows = (item: string) => {
-    setOpenedWindows((prev) => prev.filter((prevItem) => prevItem !== item));
   };
 
   const { colsNum, rowsNum } = usePCIconsGrid({ windowRef });
