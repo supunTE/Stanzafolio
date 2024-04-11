@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { BellSimple } from "@phosphor-icons/react";
-import { iconUrls } from "./icon-urls";
+import { iconUrls } from "./iconUrls";
 
 type TaskbarProps = {
   windows: string[];
@@ -26,7 +26,7 @@ export function Taskbar({ windows }: TaskbarProps) {
 
   return (
     <div className="w-full p-4">
-      <div className="bg-white/60 backdrop-blur-sm h-20 rounded-md flex">
+      <div className="bg-white/80 backdrop-blur-sm h-20 rounded-md flex">
         <div className="flex-1 flex items-center justify-center sm:justify-start space-x-2 p-2">
           {windows.map((window) => {
             return (

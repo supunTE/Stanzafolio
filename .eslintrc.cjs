@@ -13,6 +13,7 @@ module.exports = {
     "sort-exports",
     "simple-import-sort",
     "unused-imports",
+    "import",
   ],
   rules: {
     "react-refresh/only-export-components": [
@@ -62,13 +63,15 @@ module.exports = {
           ["^.+\\.?(css|scss)$"],
         ],
       },
-      {
-        files: ["index.ts"],
-        rules: {
-          "sort-exports/sort-exports": "error",
-          "import/export": "error",
-        },
-      },
     ],
   },
+  overrides: [
+    {
+      files: ["index.ts"],
+      rules: {
+        "sort-exports/sort-exports": "error",
+        "import/export": "error",
+      },
+    },
+  ],
 };

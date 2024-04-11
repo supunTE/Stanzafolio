@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import desktopBackground from "../../assets/desktop-background.jpg";
-import { Taskbar } from "./taskbar";
-import { PCIcon } from "./pc-icon";
+
+import { assets } from "../../assets";
+
 import { usePCIconsGrid } from "./utils/pc-icons-grid.util";
+import { PCIcon } from "./PCIcon";
+import { Taskbar } from "./taskbar";
 
 export function Interface() {
   const windowRef = useRef<HTMLDivElement>(null);
@@ -67,66 +68,59 @@ export function Interface() {
   const { colsNum, rowsNum } = usePCIconsGrid({ windowRef });
 
   return (
-    <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
-      className="w-full h-full p-4 sm:p-24"
-    >
-      <div className="w-full h-full rounded-xl shadow-sm bg-white/40 p-4 backdrop-blur-md">
-        {/* Photo by <a href="https://unsplash.com/@stefanbc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Stefan Cosma</a> on <a href="https://unsplash.com/photos/green-trees-on-green-grass-field-under-blue-sky-during-daytime-LkvjxaP5wNg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> */}
+    <>
+      {/* Photo by <a href="https://unsplash.com/@stefanbc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Stefan Cosma</a> on <a href="https://unsplash.com/photos/green-trees-on-green-grass-field-under-blue-sky-during-daytime-LkvjxaP5wNg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> */}
+      <div
+        ref={windowRef}
+        className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"
+        style={{ backgroundImage: `url(${assets.desktopBackground})` }}
+        onClick={() => {
+          setClickedIcon("");
+        }}
+      >
         <div
-          ref={windowRef}
-          className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"
-          style={{ backgroundImage: `url(${desktopBackground})` }}
-          onClick={() => {
-            setClickedIcon("");
+          ref={cursorRef}
+          className="bg-black z-50 absolute w-4 h-4 rounded-full ring-offset-2 ring-2 pointer-events-none touch-none"
+        />
+
+        <div
+          className="flex-1 grid justify-items-center items-center gap-2 p-4"
+          style={{
+            gridTemplateColumns: `repeat(${colsNum}, 1fr)`,
+            gridTemplateRows: `repeat(${rowsNum}, 1fr)`,
           }}
         >
-          <div
-            ref={cursorRef}
-            className="bg-black z-50 absolute w-4 h-4 rounded-full ring-offset-2 ring-2 pointer-events-none touch-none"
-          />
-
-          <div
-            className="flex-1 grid justify-items-center items-center gap-2 p-4"
-            style={{
-              gridTemplateColumns: `repeat(${colsNum}, 1fr)`,
-              gridTemplateRows: `repeat(${rowsNum}, 1fr)`,
+          <PCIcon
+            clickedIcon={clickedIcon}
+            onOpened={(item: string) => {
+              addItemToOpenedWindows(item);
             }}
-          >
-            <PCIcon
-              clickedIcon={clickedIcon}
-              onOpened={(item: string) => {
-                addItemToOpenedWindows(item);
-              }}
-              iconKey="profile"
-            />
-            <PCIcon
-              clickedIcon={clickedIcon}
-              onOpened={(item: string) => {
-                addItemToOpenedWindows(item);
-              }}
-              iconKey="achievements"
-            />
-            <PCIcon
-              clickedIcon={clickedIcon}
-              onOpened={(item: string) => {
-                addItemToOpenedWindows(item);
-              }}
-              iconKey="experiences"
-            />
-            <PCIcon
-              clickedIcon={clickedIcon}
-              onOpened={(item: string) => {
-                addItemToOpenedWindows(item);
-              }}
-              iconKey="skills"
-            />
-          </div>
-          <Taskbar windows={openedWindows} />
+            iconKey="profile"
+          />
+          <PCIcon
+            clickedIcon={clickedIcon}
+            onOpened={(item: string) => {
+              addItemToOpenedWindows(item);
+            }}
+            iconKey="achievements"
+          />
+          <PCIcon
+            clickedIcon={clickedIcon}
+            onOpened={(item: string) => {
+              addItemToOpenedWindows(item);
+            }}
+            iconKey="experiences"
+          />
+          <PCIcon
+            clickedIcon={clickedIcon}
+            onOpened={(item: string) => {
+              addItemToOpenedWindows(item);
+            }}
+            iconKey="skills"
+          />
         </div>
+        <Taskbar windows={openedWindows} />
       </div>
-    </motion.div>
+    </>
   );
 }
