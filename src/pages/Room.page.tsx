@@ -6,10 +6,10 @@ import { Suspense, useEffect, useState } from "react";
 import {
   HoverItemGroup,
   HoverMaintainer,
-} from "../components/hover-maintainer";
-import { RoomModel } from "../components/Room";
+  RoomModel,
+  RoomLoading,
+} from "../components";
 import { useBreakpoint } from "../hooks";
-import { RoomLoading } from "../components/Room.loading";
 import { motion } from "framer-motion";
 
 export function RoomPage() {
@@ -81,7 +81,6 @@ export function RoomPage() {
           intensity={10}
           color="#f1f1f1"
         />
-
         <Suspense fallback={<RoomLoading />}>
           <RoomModel />
         </Suspense>

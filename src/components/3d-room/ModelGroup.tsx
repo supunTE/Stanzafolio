@@ -1,6 +1,6 @@
 import { GroupProps } from "@react-three/fiber";
 import ModelMesh, { ModelMeshProps } from "./ModelMesh";
-import { HoverMaintainer } from "./hover-maintainer";
+import { HoverMaintainer } from "../utils";
 import { Float } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
@@ -115,9 +115,16 @@ function ModelGroup<T extends ModelGroupChildType>({
           const { groupKey: childGroupKey, ...props } =
             childProps.props as ModelGroupProps<ModelGroupChildType>;
 
+          const reactKey = [
+            ...groupKey,
+            Array.isArray(childGroupKey)
+              ? childGroupKey.join("-")
+              : childGroupKey,
+          ].join("-");
+
           return (
             <ModelGroup
-              key={groupKey.join("-")}
+              key={reactKey}
               {...props}
               groupKey={[...groupKey, childGroupKey as unknown as string]}
               isChildGroup

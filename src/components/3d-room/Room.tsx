@@ -22,7 +22,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     },
   });
 
-  /// [colors]
   const materialColors = useControls(
     "Material Colors",
     {
@@ -473,7 +472,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
             },
           ]}
         />
-        /// [Computer Motion]
         <ModelParentGroup
           groupKey={["Computer", "2"]}
           elements={[
@@ -712,7 +710,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
             },
           ]}
         />
-        /// [Mug]
         <ModelParentGroup
           groupKey="Mug"
           floatIntensity={0}
@@ -752,7 +749,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
             },
           ]}
         />
-        /// [TouchGrass]
         <ModelParentGroup
           groupKey="TouchGrass"
           elements={[

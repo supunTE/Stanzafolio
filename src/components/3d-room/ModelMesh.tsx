@@ -9,8 +9,8 @@ import { MeshProps, ThreeEvent } from "@react-three/fiber";
 import { ReactNode, Ref, forwardRef, useEffect, useState } from "react";
 import { Color, Mesh, MeshStandardMaterial } from "three";
 import clsx from "clsx";
-import { HoverMaintainer } from "./hover-maintainer";
-import { GLTFResult } from "./model-types";
+import { HoverMaintainer } from "../utils/hover-maintainer";
+import { GLTFResult } from "../../models";
 
 export type ModelMeshProps = {
   groupKey: string;

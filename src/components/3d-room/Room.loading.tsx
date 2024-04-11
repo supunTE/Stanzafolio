@@ -12,18 +12,16 @@ export function RoomLoading() {
   });
 
   return (
-    <>
-      <mesh ref={meshRef}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial />
-        <Html>
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            <div className="bg-white p-4 rounded-lg shadow-lg text-black">
-              <p>Loading...</p>
-            </div>
+    <mesh ref={meshRef}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial />
+      <Html>
+        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+          <div className="bg-white p-4 rounded-lg shadow-lg text-black">
+            <p>Loading...</p>
           </div>
-        </Html>
-      </mesh>
-    </>
+        </div>
+      </Html>
+    </mesh>
   );
 }
