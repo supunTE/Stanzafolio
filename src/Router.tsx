@@ -1,7 +1,8 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { RoomPage } from "./pages/Room.page";
-import { InfoPage } from "./pages/Info.page";
 import { AnimatePresence } from "framer-motion";
+
+import { InfoPage } from "./pages/Info.page";
+import { RoomPage } from "./pages/Room.page";
 
 export function Router() {
   const location = useLocation();

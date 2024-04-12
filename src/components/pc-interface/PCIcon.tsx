@@ -1,9 +1,11 @@
-import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { iconUrls } from "./iconUrls";
 import { DotsSix } from "@phosphor-icons/react";
+import clsx from "clsx";
+
 import { useBreakpoint } from "../../hooks";
+
+import { iconUrls } from "./iconUrls";
 
 type PCIconProps = {
   iconKey: keyof typeof iconUrls;
@@ -34,7 +36,6 @@ export function PCIcon({ iconKey, clickedIcon, onOpened }: PCIconProps) {
         setIsDragging(false);
       }}
       handle=".handle"
-      defaultClassName="order-10"
     >
       <div
         className={clsx(

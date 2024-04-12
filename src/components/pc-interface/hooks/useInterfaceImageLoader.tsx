@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-import desktopBackground from "../../assets/desktop-background.jpg";
-
-import { iconUrls } from "./iconUrls";
+import { assets } from "../../../assets";
+import { iconUrls } from "../iconUrls";
 
 // TODO: bring react-query to handle image loading
 export function useInterfaceImageLoader() {
@@ -24,7 +23,7 @@ export function useInterfaceImageLoader() {
 
     Promise.all([
       ...iconsArray.map((icon) => loadImage(icon.src)),
-      loadImage(desktopBackground),
+      loadImage(assets.desktopBackground),
     ])
       .then(() => {
         console.log("Icons loaded");

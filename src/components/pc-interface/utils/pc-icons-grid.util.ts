@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 type PCIconsGridHookProps = {
   windowRef: React.RefObject<HTMLDivElement>;
+  isInterfaceImagesLoaded: boolean;
 };
 
 type PCIconsGridHookResult = {
@@ -11,11 +12,14 @@ type PCIconsGridHookResult = {
 
 export function usePCIconsGrid({
   windowRef,
+  isInterfaceImagesLoaded,
 }: PCIconsGridHookProps): PCIconsGridHookResult {
   const [colsNum, setColsNum] = useState(1);
   const [rowsNum, setRowsNum] = useState(1);
 
   useEffect(() => {
+    if (!windowRef.current) return;
+
     const setRowsAndCols = () => {
       setColsNum(Math.floor(windowRef.current?.offsetWidth / 90));
       setRowsNum(Math.floor(windowRef.current?.offsetHeight / 110) - 2);
@@ -28,7 +32,7 @@ export function usePCIconsGrid({
     return () => {
       window.removeEventListener("resize", setRowsAndCols);
     };
-  }, []);
+  }, [windowRef, isInterfaceImagesLoaded]);
 
   return { colsNum, rowsNum };
 }

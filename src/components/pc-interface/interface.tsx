@@ -1,60 +1,36 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { assets } from "../../assets";
+import { useBreakpoint } from "../../hooks";
 
 import { usePCIconsGrid } from "./utils/pc-icons-grid.util";
+import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
+import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
+import { StatusBar } from "./statusBar";
 import { Taskbar } from "./taskbar";
 
 export function Interface() {
   const windowRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const windowFrame = windowRef.current;
+  const { isSm } = useBreakpoint("sm");
 
-    const onMouseMove = (e: MouseEvent | TouchEvent) => {
-      const x =
-        e.type === "touchmove"
-          ? (e as TouchEvent).touches[0].clientX
-          : (e as MouseEvent).clientX;
-      const y =
-        e.type === "touchmove"
-          ? (e as TouchEvent).touches[0].clientY
-          : (e as MouseEvent).clientY;
+  const isInterfaceImagesLoaded = useInterfaceImageLoader();
+  const { colsNum, rowsNum } = usePCIconsGrid({
+    windowRef,
+    isInterfaceImagesLoaded,
+  });
 
-      const rect = windowFrame.getBoundingClientRect();
-
-      const offsetX =
-        rect.left > x ? 0 : rect.right < x ? rect.width : x - rect.left;
-      const offsetY =
-        rect.top > y ? 0 : rect.bottom < y ? rect.height : y - rect.top;
-      const cursorX = offsetX - cursorRef.current.clientWidth / 2;
-      const cursorY = offsetY - cursorRef.current.clientHeight / 2;
-
-      const keyframes = { top: `${cursorY}px`, left: `${cursorX}px` };
-
-      cursorRef.current.animate(keyframes, {
-        duration: 100,
-        fill: "forwards",
-        easing: "ease-out",
-      });
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("touchmove", onMouseMove);
-    };
-  }, []);
+  useMouseCursorMove({
+    windowRef,
+    cursorRef,
+    isInterfaceImagesLoaded,
+  });
 
   const clickedIcon = useState<string>("");
-  const [clickedIconName, setClickedIcon] = clickedIcon;
+  const [_clickedIconName, setClickedIcon] = clickedIcon;
   const [openedWindows, setOpenedWindows] = useState<string[]>([]);
-
-  console.log(clickedIconName);
 
   const addItemToOpenedWindows = (item: string) => {
     setOpenedWindows((prev) => {
@@ -65,7 +41,7 @@ export function Interface() {
     });
   };
 
-  const { colsNum, rowsNum } = usePCIconsGrid({ windowRef });
+  if (!isInterfaceImagesLoaded) return <InterfaceLoading />;
 
   return (
     <>
@@ -82,6 +58,8 @@ export function Interface() {
           ref={cursorRef}
           className="bg-black z-50 absolute w-4 h-4 rounded-full ring-offset-2 ring-2 pointer-events-none touch-none"
         />
+
+        {!isSm && <StatusBar />}
 
         <div
           className="flex-1 grid justify-items-center items-center gap-2 p-4"

@@ -2,15 +2,16 @@
 Splitted 3D Model using: https://github.com/pmndrs/gltfjsx
 */
 
-import { Stage, useGLTF } from "@react-three/drei";
-import { ModelParentGroup } from "./ModelGroup";
 import { useRef, useState } from "react";
-import { Mesh } from "three";
-import { useFrame, useThree } from "@react-three/fiber";
-import { useSpring } from "@react-spring/three";
-import { useControls } from "leva";
-import useLocalStorage from "use-local-storage";
 import { useNavigate } from "react-router-dom";
+import { useSpring } from "@react-spring/three";
+import { Stage, useGLTF } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useControls } from "leva";
+import { Mesh } from "three";
+import useLocalStorage from "use-local-storage";
+
+import { ModelParentGroup } from "./ModelGroup";
 
 export function RoomModel(props: JSX.IntrinsicElements["group"]) {
   const fanBladesRef = useRef<Mesh>();
@@ -168,7 +169,8 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
   const { gl, scene, camera } = useThree();
   const [_renderImage, setRenderImage] = useLocalStorage("renderImage", "");
 
-  const logInToPC = () => {
+  const logInToPC = (e) => {
+    e.stopPropagation();
     gl.render(scene, camera);
     const dataURL = gl.domElement.toDataURL();
     setRenderImage(dataURL);

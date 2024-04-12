@@ -1,16 +1,17 @@
+import { forwardRef, ReactNode, Ref, useEffect, useState } from "react";
 import { animated, useSpring } from "@react-spring/three";
 import {
   animated as animatedWeb,
-  useSpring as useSpringWeb,
   easings,
+  useSpring as useSpringWeb,
 } from "@react-spring/web";
 import { Html, Outlines, useGLTF } from "@react-three/drei";
 import { MeshProps, ThreeEvent } from "@react-three/fiber";
-import { ReactNode, Ref, forwardRef, useEffect, useState } from "react";
-import { Color, Mesh, MeshStandardMaterial } from "three";
 import clsx from "clsx";
-import { HoverMaintainer } from "../utils/hover-maintainer";
+import { Color, Mesh, MeshStandardMaterial } from "three";
+
 import { GLTFResult } from "../../models";
+import { HoverMaintainer } from "../utils/hover-maintainer";
 
 export type ModelMeshProps = {
   groupKey: string;

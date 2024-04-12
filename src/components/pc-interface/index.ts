@@ -1,2 +1,2 @@
+export * from "./hooks/useInterfaceImageLoader";
 export * from "./interfaceFrame";
-export * from "./useInterfaceImageLoader";

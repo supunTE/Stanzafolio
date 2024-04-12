@@ -1,16 +1,17 @@
-import { Canvas } from "@react-three/fiber";
-import { Perf } from "r3f-perf";
-import { OrbitControls } from "@react-three/drei";
-import { Leva } from "leva";
 import { Suspense, useEffect, useState } from "react";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { motion } from "framer-motion";
+import { Leva } from "leva";
+import { Perf } from "r3f-perf";
+
 import {
   HoverItemGroup,
   HoverMaintainer,
-  RoomModel,
   RoomLoading,
+  RoomModel,
 } from "../components";
 import { useBreakpoint } from "../hooks";
-import { motion } from "framer-motion";
 
 export function RoomPage() {
   const { isSm } = useBreakpoint("sm");

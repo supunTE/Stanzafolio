@@ -1,5 +1,6 @@
-import useLocalStorage from "use-local-storage";
 import { motion } from "framer-motion";
+import useLocalStorage from "use-local-storage";
+
 import { InterfaceFrame } from "../components";
 
 export function InfoPage() {

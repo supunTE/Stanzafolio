@@ -1,12 +1,14 @@
-import { GroupProps } from "@react-three/fiber";
-import ModelMesh, { ModelMeshProps } from "./ModelMesh";
-import { HoverMaintainer } from "../utils";
-import { Float } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import {
   animated as animatedWeb,
   useSpring as useSpringWeb,
 } from "@react-spring/web";
+import { Float } from "@react-three/drei";
+import { GroupProps } from "@react-three/fiber";
+
+import { HoverMaintainer } from "../utils";
+
+import ModelMesh, { ModelMeshProps } from "./ModelMesh";
 
 type ModelGroupChildType = "mesh" | "group";
 
@@ -105,7 +107,7 @@ type ModelGroupProps<T extends ModelGroupChildType> = {
 function ModelGroup<T extends ModelGroupChildType>({
   groupKey,
   elements,
-  isChildGroup,
+  isChildGroup: _isChild,
   ...props
 }: ModelGroupProps<T>) {
   return (

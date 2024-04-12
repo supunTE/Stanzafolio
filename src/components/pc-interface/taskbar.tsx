@@ -1,6 +1,6 @@
-import moment from "moment";
-import { useEffect, useState } from "react";
 import { BellSimple } from "@phosphor-icons/react";
+
+import { useTime } from "./hooks";
 import { iconUrls } from "./iconUrls";
 
 type TaskbarProps = {
@@ -8,25 +8,11 @@ type TaskbarProps = {
 };
 
 export function Taskbar({ windows }: TaskbarProps) {
-  const [time, setTime] = useState("");
-  const [date, setDate] = useState("");
-
-  useEffect(() => {
-    // Time format = 12:32 PM
-    // Date format = 2024-04-08
-    const interval = setInterval(() => {
-      setTime(moment().format("hh:mm A"));
-      setDate(moment().format("YYYY-MM-DD"));
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const { time, date } = useTime();
 
   return (
     <div className="w-full p-4">
-      <div className="bg-white/80 backdrop-blur-sm h-20 rounded-md flex">
+      <div className="bg-white/80 border-white border backdrop-blur-sm h-20 rounded-md flex">
         <div className="flex-1 flex items-center justify-center sm:justify-start space-x-2 p-2">
           {windows.map((window) => {
             return (
@@ -42,6 +28,10 @@ export function Taskbar({ windows }: TaskbarProps) {
               </div>
             );
           })}
+
+          {windows.length === 0 && (
+            <div className="text-black/40 text-xs sm:hidden">No tabs open</div>
+          )}
         </div>
         <div className="gap-4 px-4 hidden sm:flex">
           <div className="flex flex-col items-center justify-center">

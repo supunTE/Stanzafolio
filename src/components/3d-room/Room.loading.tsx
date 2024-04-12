@@ -1,6 +1,6 @@
+import { useRef } from "react";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
 import { Mesh } from "three";
 
 export function RoomLoading() {

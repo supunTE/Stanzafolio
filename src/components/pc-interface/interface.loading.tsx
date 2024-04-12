@@ -1,6 +1,6 @@
 export function InterfaceLoading() {
   return (
-    <div className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 bg-black w-full h-full flex relative items-center justify-center">
+    <div className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 bg-black w-full h-full flex items-center justify-center">
       <div role="status">
         <svg
           aria-hidden="true"
