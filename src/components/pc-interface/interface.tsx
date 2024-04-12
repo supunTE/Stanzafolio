@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import { assets } from "../../assets";
 import { useBreakpoint } from "../../hooks";
@@ -8,7 +9,9 @@ import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
 import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
 import { StatusBar } from "./statusBar";
+import { useWindowManagerStore } from "./store";
 import { Taskbar } from "./taskbar";
+import { windows } from "./windows";
 
 export function Interface() {
   const windowRef = useRef<HTMLDivElement>(null);
@@ -30,15 +33,11 @@ export function Interface() {
 
   const clickedIcon = useState<string>("");
   const [_clickedIconName, setClickedIcon] = clickedIcon;
-  const [openedWindows, setOpenedWindows] = useState<string[]>([]);
+
+  const state = useWindowManagerStore();
 
   const addItemToOpenedWindows = (item: string) => {
-    setOpenedWindows((prev) => {
-      if (prev.includes(item)) {
-        return prev.filter((prevItem) => prevItem !== item);
-      }
-      return [...prev, item];
-    });
+    state.openWindow(item);
   };
 
   if (!isInterfaceImagesLoaded) return <InterfaceLoading />;
@@ -62,12 +61,26 @@ export function Interface() {
         {!isSm && <StatusBar />}
 
         <div
-          className="flex-1 grid justify-items-center items-center gap-2 p-4"
+          className="flex-1 relative grid justify-items-center items-start gap-2 p-4"
           style={{
             gridTemplateColumns: `repeat(${colsNum}, 1fr)`,
             gridTemplateRows: `repeat(${rowsNum}, 1fr)`,
           }}
         >
+          <AnimatePresence>
+            {state.activeWindows.map((window) => {
+              return (
+                windows[window] || (
+                  <div
+                    key={`window-${window}`}
+                    className="bg-white/80 text-black backdrop-blur-sm rounded-md shadow-md p-4"
+                  >
+                    Window not found
+                  </div>
+                )
+              );
+            })}
+          </AnimatePresence>
           <PCIcon
             clickedIcon={clickedIcon}
             onOpened={(item: string) => {
@@ -97,7 +110,7 @@ export function Interface() {
             iconKey="skills"
           />
         </div>
-        <Taskbar windows={openedWindows} />
+        <Taskbar />
       </div>
     </>
   );

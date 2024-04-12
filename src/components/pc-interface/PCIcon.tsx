@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import { useBreakpoint } from "../../hooks";
 
-import { iconUrls } from "./iconUrls";
+import { iconUrls } from "./store";
 
 type PCIconProps = {
   iconKey: keyof typeof iconUrls;

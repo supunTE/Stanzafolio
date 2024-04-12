@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { assets } from "../../../assets";
-import { iconUrls } from "../iconUrls";
+import { iconUrls } from "../store";
 
 // TODO: bring react-query to handle image loading
 export function useInterfaceImageLoader() {
