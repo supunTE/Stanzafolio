@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { ArrowsInSimple, X } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
@@ -5,9 +6,10 @@ import { iconUrls, useWindowManagerStore } from "../store";
 
 type WindowProps = {
   id: string;
+  children?: ReactNode;
 };
 
-export function Window({ id }: WindowProps) {
+export function Window({ id, children = null }: WindowProps) {
   const state = useWindowManagerStore();
 
   return (
@@ -46,6 +48,7 @@ export function Window({ id }: WindowProps) {
             </div>
           </div>
         </div>
+        {children}
       </div>
     </motion.div>
   );
