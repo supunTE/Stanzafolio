@@ -21,6 +21,7 @@ export function Profile(): JSX.Element {
           </div>
           <h1 className="text-black font-bold text-2xl py-4 text-center jetbrains-mono">
             Supun Tharinda Edirisuriya
+            <div className="text-xs mt-2 text-gray-500">He/him</div>
           </h1>
           <h5 className="text-black text-center text-sm">
             <span className="hover:text-green-800 transition-colors duration-300">

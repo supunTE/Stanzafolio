@@ -12,16 +12,16 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
 
   const variants = {
     scaleUpDown: {
-      scale: [1, 1.5, 1],
-      transition: { duration: 0.2 },
+      scale: [1, 2, 1],
+      transition: { duration: 0.1 },
     },
     scaleUp: {
       scale: 2,
-      transition: { duration: 0.2 },
+      transition: { duration: 0.1 },
     },
     scaleDown: {
       scale: 1,
-      transition: { duration: 0.2 },
+      transition: { duration: 0.1 },
     },
   };
 
@@ -61,6 +61,7 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.1 }}
           >
             <ArrowSquareOut size={10} className="text-white" />
           </motion.div>
