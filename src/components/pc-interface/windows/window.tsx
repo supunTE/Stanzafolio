@@ -14,7 +14,7 @@ export function Window({ id, children = null }: WindowProps) {
 
   return (
     <motion.div
-      className="w-full h-full p-4 py-0 sm:pt-4 absolute z-10"
+      className="w-full h-full p-4 pt-0 sm:pt-4 absolute z-10"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}

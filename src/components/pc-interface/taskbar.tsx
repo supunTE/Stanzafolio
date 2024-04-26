@@ -14,7 +14,7 @@ export function Taskbar() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full">
       <div className="bg-white/80 border-white border backdrop-blur-sm h-20 rounded-md flex">
         <div className="flex-1 flex items-center justify-center sm:justify-start space-x-2 p-2">
           {state.allWindows.map((window) => {
