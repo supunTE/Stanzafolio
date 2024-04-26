@@ -5,38 +5,49 @@ import {
   LinkedinLogo,
   XLogo,
 } from "@phosphor-icons/react";
+import clsx from "clsx";
+
+import { MouseState, useCursorStore } from "../../store";
 
 export function SocialSection() {
+  const cursorState = useCursorStore();
+
   return (
     <div className="flex flex-col m-auto py-4 text-sm gap-1 text-black w-full">
-      <a
+      <SocialIcon
         href="https://www.linkedin.com/in/supunte/"
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center justify-center gap-2 hover:text-[#0077B5] p-1 hover:bg-white rounded-md transition-colors duration-300"
-      >
-        <LinkedinLogo size={16} /> LinkedIn
-      </a>
-      <a
+        icon={<LinkedinLogo size={16} />}
+        color="#0077B5"
+        label="LinkedIn"
+        classNames="hover:text-[#0077B5] hover:bg-white"
+      />
+      <SocialIcon
         href="https://github.com/supunte/"
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center justify-center gap-2 p-1 hover:text-white hover:bg-[#333] rounded-md transition-colors duration-300"
-      >
-        <GithubLogo size={16} /> GitHub
-      </a>
-      <a
+        icon={<GithubLogo size={16} />}
+        color="#333"
+        label="GitHub"
+        classNames="hover:text-white hover:bg-[#333]"
+      />
+      <SocialIcon
         href="https://www.facebook.com/SupunTharindaE/"
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center justify-center gap-2 p-1 hover:text-[#3b5998] hover:bg-white rounded-md transition-colors duration-300"
-      >
-        <FacebookLogo size={16} /> Facebook
-      </a>
+        icon={<FacebookLogo size={16} />}
+        color="#1877F2"
+        label="Facebook"
+        classNames="hover:text-[#1877F2] hover:bg-white"
+      />
+
       <a
         href="https://www.instagram.com/supuntharinda_"
         target="_blank"
         rel="noreferrer"
+        onMouseOver={() => {
+          cursorState.setCursorColor("#bc2a8d");
+          cursorState.setMouseState(MouseState.LINK);
+        }}
+        onMouseOut={() => {
+          cursorState.resetCursorColor();
+          cursorState.resetMouseState();
+        }}
         className="flex group/icon items-center p-1 hover:bg-white rounded-md justify-center gap-2 transition-colors duration-300"
       >
         <InstagramLogo
@@ -52,33 +63,86 @@ export function SocialSection() {
           </span>
         </div>
       </a>
-      <a
+
+      <SocialIcon
         href="https://twitter.com/Supun_Tharinda_"
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center justify-center gap-2 p-1 hover:bg-[#14171A] hover:text-white rounded-md transition-colors duration-300"
-      >
-        <XLogo size={16} /> X <span className="text-xs">(Twitter)</span>
-      </a>
+        icon={<XLogo size={16} />}
+        color="#14171A"
+        label={
+          <>
+            X<span className="text-xs">(Twitter)</span>
+          </>
+        }
+        classNames="hover:text-white hover:bg-[#14171A]"
+      />
+
       <div className="flex mt-4 gap-2 flex-wrap">
         Other:
-        <a
+        <MiniLink
           href="https://www.fiverr.com/supun_tharinda"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center justify-center px-2 gap-2 border border-gray-300 hover:bg-[#1DBF73] hover:text-white rounded-md transition-colors duration-300"
-        >
-          Fiverr
-        </a>
-        <a
+          color="#1DBF73"
+          label="Fiverr"
+          classNames="hover:bg-[#1DBF73]"
+        />
+        <MiniLink
           href="https://dribbble.com/supun_te"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center justify-center px-2 gap-2 border border-gray-300 hover:bg-[#ed4989] hover:text-white rounded-md transition-colors duration-300"
-        >
-          Dribble
-        </a>
+          color="#ed4989"
+          label="Dribble"
+          classNames="hover:bg-[#ed4989]"
+        />
       </div>
     </div>
   );
 }
+
+const SocialIcon = ({ href, icon, color, label, classNames }) => {
+  const cursorState = useCursorStore();
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      onMouseOver={() => {
+        cursorState.setCursorColor(color);
+        cursorState.setMouseState(MouseState.LINK);
+      }}
+      onMouseOut={() => {
+        cursorState.resetCursorColor();
+        cursorState.resetMouseState();
+      }}
+      className={clsx(
+        "flex items-center justify-center gap-2 p-1 rounded-md transition-colors duration-300",
+        classNames
+      )}
+    >
+      {icon} {label}
+    </a>
+  );
+};
+
+const MiniLink = ({ href, color, label, classNames }) => {
+  const cursorState = useCursorStore();
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      onMouseOver={() => {
+        cursorState.setCursorColor(color);
+        cursorState.setMouseState(MouseState.LINK);
+      }}
+      onMouseOut={() => {
+        cursorState.resetCursorColor();
+        cursorState.resetMouseState();
+      }}
+      className={clsx(
+        "flex items-center justify-center px-2 border border-gray-300 rounded-md transition-colors duration-300 hover:text-white",
+        classNames
+      )}
+    >
+      {label}
+    </a>
+  );
+};

@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
 type UseMouseCursorMoveHookProps = {
-  windowRef: React.RefObject<HTMLDivElement>;
-  cursorRef: React.RefObject<HTMLDivElement>;
+  windowRef: RefObject<HTMLDivElement>;
+  cursorRef: RefObject<HTMLDivElement>;
   isInterfaceImagesLoaded: boolean;
 };
 

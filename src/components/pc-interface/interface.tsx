@@ -5,6 +5,7 @@ import { assets } from "../../assets";
 import { useBreakpoint } from "../../hooks";
 
 import { usePCIconsGrid } from "./utils/pc-icons-grid.util";
+import { Cursor } from "./cursor";
 import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
 import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
@@ -53,10 +54,7 @@ export function Interface() {
           setClickedIcon("");
         }}
       >
-        <div
-          ref={cursorRef}
-          className="bg-black z-50 absolute w-4 h-4 rounded-full ring-offset-2 ring-2 pointer-events-none touch-none"
-        />
+        <Cursor ref={cursorRef} />
 
         {!isSm && <StatusBar />}
 
