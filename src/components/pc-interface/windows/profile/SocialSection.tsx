@@ -13,7 +13,7 @@ export function SocialSection() {
   const cursorState = useCursorStore();
 
   return (
-    <div className="flex flex-col m-auto py-4 text-sm gap-1 text-black w-full">
+    <div className="flex flex-col m-auto py-4 text-sm text-black w-full">
       <SocialIcon
         href="https://www.linkedin.com/in/supunte/"
         icon={<LinkedinLogo size={16} />}
@@ -76,8 +76,9 @@ export function SocialSection() {
         classNames="hover:text-white hover:bg-[#14171A]"
       />
 
-      <div className="flex mt-4 gap-2 flex-wrap">
-        Other:
+      <div className="m-auto mt-4 flex flex-col justify-center">
+        <span className="text-gray-500 text-center py-1">More on:</span>
+        <div className="flex gap-2 flex-wrap items-center justify-center">
         <MiniLink
           href="https://www.fiverr.com/supun_tharinda"
           color="#1DBF73"
@@ -90,6 +91,7 @@ export function SocialSection() {
           label="Dribble"
           classNames="hover:bg-[#ed4989]"
         />
+        </div>
       </div>
     </div>
   );

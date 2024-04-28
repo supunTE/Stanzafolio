@@ -1,12 +1,13 @@
 import { Window } from "../window";
 
+import { ProfileInfo } from "./ProfileInfo";
 import { SocialSection } from "./SocialSection";
 
 export function Profile(): JSX.Element {
   return (
     <Window id="profile">
-      <div className="flex flex-col sm:flex-row h-full overflow-hidden">
-        <div className="bg-white/80 w-full sm:h-full flex flex-col interface-scrollbar overflow-y-auto sm:w-2/5   lg:w-1/3 xl:w-1/5 p-4">
+      <div className="overflow-y-scroll interface-scrollbar sm:flex sm:flex-row h-full sm:overflow-hidden">
+        <div className="bg-white/80 w-full sm:h-full flex flex-col interface-scrollbar overflow-y-auto sm:w-2/5 lg:w-1/3 2xl:w-1/4 3xl:w-1/5 p-4">
           <div className="relative">
             <img
               className="rounded-lg overflow-hidden bg-cover"
@@ -21,6 +22,7 @@ export function Profile(): JSX.Element {
           </div>
           <h1 className="text-black font-bold text-2xl py-4 text-center jetbrains-mono">
             Supun Tharinda Edirisuriya
+            <div className="text-sm">(supTE)</div>
             <div className="text-xs mt-2 text-gray-500">He/him</div>
           </h1>
           <h5 className="text-black text-center text-sm">
@@ -34,11 +36,9 @@ export function Profile(): JSX.Element {
           </h5>
           <SocialSection />
         </div>
-        {/* <img
-          className="h-5 border-white"
-          src={assets.sriLankanFlag}
-          alt="profile-img"
-        /> */}
+        <div className="w-full">
+          <ProfileInfo />
+        </div>
       </div>
     </Window>
   );

@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export enum MouseState {
   LINK = "link",
+  DOWNLOAD = "download",
   DEFAULT = "default",
 }
 

@@ -1,6 +1,11 @@
 import { forwardRef, useEffect } from "react";
-import { ArrowSquareOut } from "@phosphor-icons/react";
-import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
+import { ArrowSquareOut, DownloadSimple } from "@phosphor-icons/react";
+import {
+  AnimatePresence,
+  easeInOut,
+  motion,
+  useAnimationControls,
+} from "framer-motion";
 
 import { MouseState, useCursorStore } from "./store";
 
@@ -12,8 +17,9 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
 
   const variants = {
     scaleUpDown: {
-      scale: [1, 2, 1],
-      transition: { duration: 0.1 },
+      scale: state.mouseState === MouseState.DEFAULT ? [1, 8, 1] : 2,
+      transition: { duration: 0.2 },
+      ease: easeInOut,
     },
     scaleUp: {
       scale: 2,
@@ -38,7 +44,7 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
   }, []);
 
   useEffect(() => {
-    if (state.mouseState === MouseState.LINK) {
+    if (state.mouseState !== MouseState.DEFAULT) {
       controls.start("scaleUp");
     } else {
       controls.start("scaleDown");
@@ -57,14 +63,23 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
     >
       <AnimatePresence>
         {state.mouseState === MouseState.LINK ? (
-          <motion.div
+          <motion.span
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.1 }}
           >
             <ArrowSquareOut size={10} className="text-white" />
-          </motion.div>
+          </motion.span>
+        ) : state.mouseState === MouseState.DOWNLOAD ? (
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.1 }}
+          >
+            <DownloadSimple size={10} className="text-white" />
+          </motion.span>
         ) : null}
       </AnimatePresence>
     </motion.div>

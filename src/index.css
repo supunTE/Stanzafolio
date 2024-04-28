@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -70,8 +71,26 @@ body {
   }
 }
 
+.rotate-360 {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .jetbrains-mono {
   font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+}
+
+.noto-sans-sinhala {
+  font-family: "Noto Sans Sinhala", sans-serif;
   font-optical-sizing: auto;
 }
 
