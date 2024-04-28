@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Info } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { clamp } from "lodash";
 
 import { assets } from "../../../../../assets";
+import { MouseState, useCursorStore } from "../../../store";
 
 type cords = {
   x: number;
@@ -127,6 +129,8 @@ export function FlappyBox() {
     };
   }, [cardRef]);
 
+  const cursorState = useCursorStore();
+
   return (
     <div
       className="w-full h-full relative"
@@ -138,6 +142,31 @@ export function FlappyBox() {
         setIsDisabled(true);
       }}
     >
+      <div className="absolute left-2 top-2 z-40 group">
+        <div
+          className={clsx(
+            "flex text-nowrap absolute transition-all duration-300 text-sm text-center bg-white border-gray-300 border rounded-full p-1.5 text-gray-500 z-5"
+          )}
+        >
+          <Info className="text-black" size={20} />
+          <span className="group-hover:max-w-64 max-w-0 overflow-hidden transition-all duration-300">
+            <a
+              href="https://megacrash.itch.io/flappy-bird-assets"
+              className="px-4"
+              onMouseEnter={() => {
+                cursorState.setMouseState(MouseState.LINK);
+              }}
+              onMouseLeave={() => {
+                cursorState.resetMouseState();
+              }}
+            >
+              Assets from
+              <span className="text-red-600">&nbsp;itch.io</span>
+            </a>
+          </span>
+        </div>
+      </div>
+
       <motion.div
         initial={{
           opacity: 0,
