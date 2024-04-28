@@ -11,7 +11,7 @@ type cords = {
 };
 
 export function FlappyBox() {
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,7 +19,7 @@ export function FlappyBox() {
   const birdRef = useRef<HTMLDivElement>(null);
 
   // 0 to 1
-  const [birdY, setBirdY] = useState(1);
+  const [birdY, setBirdY] = useState(0.5);
   const [birdPose, setBirdPose] = useState(1);
   const [bgIndex, setBgIndex] = useState(0);
 
@@ -97,7 +97,7 @@ export function FlappyBox() {
   useEffect(() => {
     const birdYInterval = setInterval(() => {
       setBirdY((prev) => {
-        if (isDisabled) {
+        if (isDisabled || isGameOver) {
           return 0.5;
         }
         const newY = prev - 0.25;
@@ -128,85 +128,108 @@ export function FlappyBox() {
   }, [cardRef]);
 
   return (
-    <>
-      <div
-        className="w-full h-full relative"
-        ref={cardRef}
-        onMouseOver={() => {
-          setIsDisabled(false);
+    <div
+      className="w-full h-full relative"
+      ref={cardRef}
+      onMouseOver={() => {
+        setIsDisabled(false);
+      }}
+      onMouseOut={() => {
+        setIsDisabled(true);
+      }}
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
         }}
-        onMouseOut={() => {
-          setIsDisabled(true);
+        animate={{
+          opacity: isGameOver ? 1 : 0,
         }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        className="game-over z-20 inset-0 absolute bg-white/40 backdrop-blur-md flex flex-col gap-2 items-center justify-center"
       >
-        <img
-          src={assets.flappy.bg1}
-          onClick={(e) => {
-            setBgIndex(0);
-            e.stopPropagation();
+        <h2 className="text-black jetbrains-mono">Game Over</h2>
+        <button
+          onClick={() => {
+            setIsGameOver(false);
+            setIsDisabled(false);
           }}
-          className={clsx(
-            "absolute right-2 top-2  z-40 w-10 h-10 rounded-md border-2 border-white",
-            {
-              hidden: bgIndex !== 1,
-            }
-          )}
-        />
-        <img
-          src={assets.flappy.bg2}
-          onClick={(e) => {
-            setBgIndex(1);
-            e.stopPropagation();
+          className="bg-white p-1 px-4 rounded-full text-black hover:bg-black hover:text-white transition-all duration-300"
+        >
+          Restart
+        </button>
+      </motion.div>
+      <img
+        src={assets.flappy.bg1}
+        onClick={(e) => {
+          setBgIndex(0);
+          e.stopPropagation();
+        }}
+        className={clsx(
+          "absolute right-2 top-2  z-40 w-10 h-10 rounded-md border-2 border-white",
+          {
+            hidden: bgIndex !== 1,
+          }
+        )}
+      />
+      <img
+        src={assets.flappy.bg2}
+        onClick={(e) => {
+          setBgIndex(1);
+          e.stopPropagation();
+        }}
+        className={clsx(
+          "absolute right-2 top-2  z-40 w-10 h-10 rounded-md border-2 border-white",
+          {
+            hidden: bgIndex !== 0,
+          }
+        )}
+      />
+      <div className="absolute flex w-full h-full overflow-hidden">
+        <canvas ref={canvasRef} />
+        <motion.div
+          className="absolute z-10 inset-x-0 flex items-center justify-center"
+          initial={{
+            y: 0.5,
           }}
-          className={clsx(
-            "absolute right-2 top-2  z-40 w-10 h-10 rounded-md border-2 border-white",
-            {
-              hidden: bgIndex !== 0,
-            }
-          )}
-        />
-        <div className="absolute flex w-full h-full overflow-hidden">
-          <canvas ref={canvasRef} />
+          // canvas height is 200px and bird height is around 50px
+          animate={{
+            y: (1 - birdY) * 175,
+          }}
+          transition={{
+            duration: 1,
+            damping: 1,
+          }}
+        >
           <motion.div
-            className="absolute z-10 inset-x-0 flex items-center justify-center"
-            initial={{
-              y: 0.5,
+            ref={birdRef}
+            className="w-6 h-6 z-20 bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: `url(${assets.flappy.flappy})`,
+              backgroundPosition: `${(100 / 3) * birdPose}% 0`,
             }}
-            animate={{
-              y:
-                (1 - birdY) *
-                (cardRef.current?.clientHeight - birdRef.current?.clientHeight),
-            }}
-            transition={{
-              duration: 1,
-              damping: 1,
-            }}
-          >
-            <motion.div
-              ref={birdRef}
-              className="w-6 h-6 bg-cover bg-no-repeat"
-              style={{
-                backgroundImage: `url(${assets.flappy.flappy})`,
-                backgroundPosition: `${(100 / 3) * birdPose}% 0`,
-              }}
-            />
-          </motion.div>
-        </div>
-        <PipeSpawner
-          cardWidth={cardRef.current?.clientWidth}
-          cardHeight={cardRef.current?.clientHeight}
-          birdRef={birdRef}
-          checkCollision={(isColliding: boolean) => {
-            if (isColliding) {
-              setIsGameOver(true);
-              setIsDisabled(true);
-            }
-          }}
-          disabled={isDisabled}
-          gameover={isGameOver}
-        />
+          />
+        </motion.div>
       </div>
-    </>
+      <PipeSpawner
+        cardWidth={cardRef.current?.clientWidth}
+        cardHeight={cardRef.current?.clientHeight}
+        birdRef={birdRef}
+        checkCollision={(isColliding: boolean) => {
+          if (isColliding) {
+            setIsGameOver(true);
+            setIsDisabled(true);
+          }
+        }}
+        disabled={isDisabled}
+        gameover={isGameOver}
+      />
+    </div>
   );
 }
 
