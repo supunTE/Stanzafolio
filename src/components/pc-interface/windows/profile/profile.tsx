@@ -6,7 +6,7 @@ import { SocialSection } from "./SocialSection";
 export function Profile(): JSX.Element {
   return (
     <Window id="profile">
-      <div className="overflow-y-scroll interface-scrollbar sm:flex sm:flex-row h-full sm:overflow-hidden">
+      <div className="overflow-y-scroll overflow-x-hidden interface-scrollbar sm:flex sm:flex-row h-full sm:overflow-hidden">
         <div className="bg-white/80 w-full sm:h-full flex flex-col interface-scrollbar overflow-y-auto sm:w-2/5 lg:w-1/3 2xl:w-1/4 3xl:w-1/5 p-4">
           <div className="relative">
             <img

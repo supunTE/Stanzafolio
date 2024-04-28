@@ -4,6 +4,7 @@ import flappyBird from "./vectors/game/flappy.png";
 import flappyBg1 from "./vectors/game/flappy-bg-1.png";
 import flappyBg2 from "./vectors/game/flappy-bg-2.png";
 import pipe from "./vectors/game/pipe.png";
+import { interests } from "./vectors/interests";
 import sriLankanFlag from "./vectors/sri-lankan-flag.png";
 
 export const assets = {
@@ -16,4 +17,5 @@ export const assets = {
     flappy: flappyBird,
     pipe: pipe,
   },
+  interests,
 };
