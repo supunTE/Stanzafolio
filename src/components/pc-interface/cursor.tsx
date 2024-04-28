@@ -11,7 +11,7 @@ import { MouseState, useCursorStore } from "./store";
 
 interface CursorProps {}
 
-export const Cursor = forwardRef<HTMLDivElement, CursorProps>((props, ref) => {
+export const Cursor = forwardRef<HTMLDivElement, CursorProps>((_props, ref) => {
   const controls = useAnimationControls();
   const state = useCursorStore();
 
