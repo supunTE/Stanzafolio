@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import { assets } from "../../assets";
@@ -10,7 +11,7 @@ import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
 import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
 import { StatusBar } from "./statusBar";
-import { useWindowManagerStore } from "./store";
+import { iconUrls, useWindowManagerStore } from "./store";
 import { Taskbar } from "./taskbar";
 import { windows } from "./windows";
 
@@ -36,6 +37,33 @@ export function Interface() {
   const [_clickedIconName, setClickedIcon] = clickedIcon;
 
   const state = useWindowManagerStore();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const activeWindowsParam = searchParams.get("activeWindows");
+    const allWindowsParam = searchParams.get("allWindows");
+
+    console.log(activeWindowsParam, "activeWindowsParam");
+    console.log(allWindowsParam, "allWindowsParam");
+
+    if (allWindowsParam) {
+      const allWindows = allWindowsParam.split(",");
+      const activeWindows = activeWindowsParam.split(",") || [];
+
+      console.log(allWindows, "allWindows");
+      console.log(activeWindows, "activeWindows");
+
+      // Remove windows that are not in iconUrls
+      const filteredAllWindows = allWindows.filter((window) =>
+        Object.keys(iconUrls).includes(window)
+      );
+      const filteredActiveWindows = activeWindows.filter((window) =>
+        Object.keys(iconUrls).includes(window)
+      );
+
+      state.replaceWindows(filteredActiveWindows, filteredAllWindows);
+    }
+  }, []);
 
   const addItemToOpenedWindows = (item: string) => {
     state.openWindow(item);
