@@ -45,7 +45,6 @@ export function Interface() {
 
   return (
     <>
-      {/* Photo by <a href="https://unsplash.com/@stefanbc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Stefan Cosma</a> on <a href="https://unsplash.com/photos/green-trees-on-green-grass-field-under-blue-sky-during-daytime-LkvjxaP5wNg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> */}
       <div
         ref={windowRef}
         className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"

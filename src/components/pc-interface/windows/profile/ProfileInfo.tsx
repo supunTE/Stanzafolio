@@ -1,9 +1,11 @@
 import clsx from "clsx";
 
+import { AboutBox } from "./grid-items/AboutBox";
 import { CountryBox } from "./grid-items/CountryBox";
 import { DownloadCV } from "./grid-items/DownloadCV";
 import { EducationBox } from "./grid-items/EducationBox";
 import { FlappyBox } from "./grid-items/FlappyBox";
+import { InterestsBox } from "./grid-items/InterestsBox";
 import { LanguageBox } from "./grid-items/LanguageBox";
 
 export function ProfileInfo(): JSX.Element {
@@ -24,13 +26,24 @@ export function ProfileInfo(): JSX.Element {
       <div className={clsx(boxCss, "overflow-hidden")}>
         <DownloadCV />
       </div>
-      <div className={clsx(boxCss, "overflow-hidden")}>
+      <div className={clsx(boxCss, "overflow-hidden order-11 sm:order-none")}>
         <FlappyBox />
+      </div>
+      <div className={clsx(boxCss, "p-4 col-span-1 md:col-span-2")}>
+        <InterestsBox />
+      </div>
+      <div className={clsx(boxCss, "p-4")}>
+        <InterestsBox />
+      </div>
+      <div className={clsx(boxCss, "p-4")}>
+        <InterestsBox />
+      </div>
+      <div className={clsx(boxCss, "order-12 overflow-hidden")}>
+        <AboutBox />
       </div>
     </div>
   );
 }
 
-// about website
-// soft skills
-// interests
+// contact
+// small bio (age) / emoji / update coming soon/ open to work

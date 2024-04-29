@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Info } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { clamp } from "lodash";
 
 import { assets } from "../../../../../assets";
-import { MouseState, useCursorStore } from "../../../store";
 
 type cords = {
   x: number;
@@ -129,8 +127,6 @@ export function FlappyBox() {
     };
   }, [cardRef]);
 
-  const cursorState = useCursorStore();
-
   return (
     <div
       className="w-full h-full relative"
@@ -142,7 +138,7 @@ export function FlappyBox() {
         setIsDisabled(true);
       }}
     >
-      <div className="absolute left-2 top-2 z-40 group">
+      {/* <div className="absolute left-2 top-2 z-40 group">
         <div
           className={clsx(
             "flex text-nowrap absolute transition-all duration-300 text-sm text-center bg-white border-gray-300 border rounded-full p-1.5 text-gray-500 z-5"
@@ -165,7 +161,7 @@ export function FlappyBox() {
             </a>
           </span>
         </div>
-      </div>
+      </div> */}
 
       <motion.div
         initial={{

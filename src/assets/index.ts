@@ -1,4 +1,5 @@
 import desktopBackground from "./images/desktop-background.jpg";
+import noise from "./images/noise.png";
 import documentIcon from "./vectors/document.svg";
 import flappyBird from "./vectors/game/flappy.png";
 import flappyBg1 from "./vectors/game/flappy-bg-1.png";
@@ -18,4 +19,5 @@ export const assets = {
     pipe: pipe,
   },
   interests,
+  noise,
 };
