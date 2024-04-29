@@ -7,6 +7,7 @@ import { EducationBox } from "./grid-items/EducationBox";
 import { FlappyBox } from "./grid-items/FlappyBox";
 import { InterestsBox } from "./grid-items/InterestsBox";
 import { LanguageBox } from "./grid-items/LanguageBox";
+import { StatusBox } from "./grid-items/StatusBox";
 
 export function ProfileInfo(): JSX.Element {
   const boxCss =
@@ -32,8 +33,8 @@ export function ProfileInfo(): JSX.Element {
       <div className={clsx(boxCss, "p-4 col-span-1 md:col-span-2")}>
         <InterestsBox />
       </div>
-      <div className={clsx(boxCss, "p-4")}>
-        <InterestsBox />
+      <div className={clsx()}>
+        <StatusBox />
       </div>
       <div className={clsx(boxCss, "p-4")}>
         <InterestsBox />
