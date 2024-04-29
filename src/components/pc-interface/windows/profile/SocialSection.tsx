@@ -79,18 +79,24 @@ export function SocialSection() {
       <div className="m-auto mt-4 flex flex-col justify-center">
         <span className="text-gray-500 text-center py-1">More on:</span>
         <div className="flex gap-2 flex-wrap items-center justify-center">
-        <MiniLink
-          href="https://www.fiverr.com/supun_tharinda"
-          color="#1DBF73"
-          label="Fiverr"
-          classNames="hover:bg-[#1DBF73]"
-        />
-        <MiniLink
-          href="https://dribbble.com/supun_te"
-          color="#ed4989"
-          label="Dribble"
-          classNames="hover:bg-[#ed4989]"
-        />
+          <MiniLink
+            href="https://www.fiverr.com/supun_tharinda"
+            color="#1DBF73"
+            label="Fiverr"
+            classNames="hover:bg-[#1DBF73]"
+          />
+          <MiniLink
+            href="https://dribbble.com/supun_te"
+            color="#ed4989"
+            label="Dribble"
+            classNames="hover:bg-[#ed4989]"
+          />
+          <MiniLink
+            href="https://www.hackerrank.com/profile/STEdirisuriya"
+            color="#2EC866"
+            label="Hackerrank"
+            classNames="hover:bg-[#2EC866]"
+          />
         </div>
       </div>
     </div>
