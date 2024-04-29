@@ -7,6 +7,7 @@ import { EducationBox } from "./grid-items/EducationBox";
 import { FlappyBox } from "./grid-items/FlappyBox";
 import { InterestsBox } from "./grid-items/InterestsBox";
 import { LanguageBox } from "./grid-items/LanguageBox";
+import { QuoteBox } from "./grid-items/QuoteBox";
 import { StatusBox } from "./grid-items/StatusBox";
 
 export function ProfileInfo(): JSX.Element {
@@ -37,7 +38,7 @@ export function ProfileInfo(): JSX.Element {
         <StatusBox />
       </div>
       <div className={clsx(boxCss, "p-4")}>
-        <InterestsBox />
+        <QuoteBox />
       </div>
       <div className={clsx(boxCss, "order-12 overflow-hidden")}>
         <AboutBox />
