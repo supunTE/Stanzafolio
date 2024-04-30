@@ -24,13 +24,13 @@ export function RigidBody({
   });
 
   useEffect(() => {
-    console.log("RigidBody mounted", engine, world);
+    // console.log("RigidBody mounted", engine, world);
     if (!engine || !world || sceneWidth == 0) return;
 
     const rigidBodyWidth = bodyRef.current.clientWidth;
     // const rigidBodyHeight = bodyRef.current.clientHeight;
 
-    console.log(sceneWidth);
+    // console.log(sceneWidth);
 
     const rigidBody = {
       w: rigidBodyWidth,
@@ -41,7 +41,7 @@ export function RigidBody({
         rigidBodyWidth / 2,
         {
           frictionAir: 0.05,
-          restitution: 0.8,
+          //   restitution: 0.8,
           render: { fillStyle: "#F3F3F3" },
         }
       ),
@@ -72,7 +72,7 @@ export function RigidBody({
   return (
     <div
       ref={bodyRef}
-      className="absolute p-2 sm:p-6 lg:p-10 xl:p-14 text-sm sm:text-md lg:text-lg xl:text-xl w-max aspect-square rounded-full flex items-center justify-center"
+      className="absolute p-2 sm:p-6 lg:p-10 2xl:p-12 text-sm sm:text-md lg:text-lg xl:text-xl w-max aspect-square rounded-full flex items-center justify-center"
       style={{ backgroundColor: randomColor.color }}
     >
       {children}

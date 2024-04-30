@@ -3,8 +3,9 @@ export type Skill = {
 };
 
 export const mySkills: Skill[] = [
-  { name: "CSS" },
   { name: "HTML" },
+  { name: "CSS" },
+  { name: "SASS" },
   { name: "Javascript" },
   { name: "ReactJS" },
   { name: "ThreeJS" },
@@ -19,6 +20,8 @@ export const mySkills: Skill[] = [
   { name: "ExpressJS" },
   { name: "Jest" },
   { name: "Git" },
+  { name: "GitHub" },
+
   { name: "Flutter" },
   { name: "Figma" },
 ];
