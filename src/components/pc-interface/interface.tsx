@@ -75,7 +75,7 @@ export function Interface() {
     <>
       <div
         ref={windowRef}
-        className="bg-cover cursor-none rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"
+        className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"
         style={{ backgroundImage: `url(${assets.desktopBackground})` }}
         onClick={() => {
           setClickedIcon("");
