@@ -88,6 +88,7 @@ export const PhysicsWorld = () => {
         mouse,
         constraint: {
           stiffness: 0.005,
+          friction: 0.1,
         },
       });
       World.add(world, mouseConstraint);
@@ -122,6 +123,7 @@ export const PhysicsWorld = () => {
               engine={engineRef.current}
               world={worldRef.current}
               sceneWidth={sceneWidth}
+              icon={skill.icon}
               key={skill.name}
             >
               {skill.name}

@@ -6,6 +6,7 @@ import uniqolor from "uniqolor";
 type RigidBodyProps = {
   engine: Engine;
   world: World;
+  icon: string;
   sceneWidth: number;
   children: ReactNode;
 };
@@ -13,6 +14,7 @@ type RigidBodyProps = {
 export function RigidBody({
   engine,
   world,
+  icon,
   sceneWidth,
   children,
 }: RigidBodyProps) {
@@ -72,9 +74,14 @@ export function RigidBody({
   return (
     <div
       ref={bodyRef}
-      className="absolute p-2 sm:p-6 lg:p-10 2xl:p-12 text-sm sm:text-md lg:text-lg xl:text-xl w-max aspect-square rounded-full flex items-center justify-center"
-      style={{ backgroundColor: randomColor.color }}
+      className="absolute p-2 sm:p-6 lg:p-10 2xl:p-12 text-xs sm:text-md xl:text-lg w-max aspect-square rounded-full flex flex-col items-center justify-center bg-white border text-black shadow-sm
+       min-w-16 min-h-16 sm:min-w-24 sm:min-h-24 hover:bg-black hover:text-white transition-colors duration-300"
     >
+      <img
+        src={icon}
+        alt=""
+        className="w-5 h-5 sm:w-10 sm:h-10 object-contain"
+      />
       {children}
     </div>
   );
