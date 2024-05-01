@@ -20,7 +20,7 @@ export function LanguageBox() {
       <div className="noto-sans-sinhala absolute text-9xl right-4 top-0 -rotate-45 text-gray-300 select-none">
         අ
       </div>
-      <div className="absolute text-9xl -bottom-2 right-6 rotate-12 text-gray-300 select-none">
+      <div className="absolute text-9xl -bottom-2 right-6 rotate-12 text-gray-300 select-none font-thin">
         A
       </div>
     </div>
