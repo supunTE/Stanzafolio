@@ -32,7 +32,6 @@
     "react-router-dom": "^6.22.3",
     "react-spring": "^9.7.3",
     "three": "^0.162.0",
-    "uniqolor": "^1.1.1",
     "use-local-storage": "^3.0.0",
     "zustand": "^4.5.2"
   },

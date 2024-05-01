@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { clamp } from "lodash";
 import { Bodies, Engine, World } from "matter-js";
-import uniqolor from "uniqolor";
 
 type RigidBodyProps = {
   engine: Engine;
@@ -19,11 +18,6 @@ export function RigidBody({
   children,
 }: RigidBodyProps) {
   const bodyRef = useRef<HTMLDivElement>(null);
-
-  const randomColor = uniqolor.random({
-    saturation: [80, 100],
-    lightness: 40,
-  });
 
   useEffect(() => {
     // console.log("RigidBody mounted", engine, world);
