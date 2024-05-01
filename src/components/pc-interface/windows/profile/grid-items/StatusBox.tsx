@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 
+import { getWeatherData } from "../../../../../api/weather";
+
 export function StatusBox() {
   const [temperature, setTemperature] = useState<number | null>(null);
   const [condition, setCondition] = useState<string | null>(null);
   const [conditionIconUrl, setConditionIconUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    const url = `http://api.weatherapi.com/v1/current.json?key=${
-      import.meta.env.VITE_WEATHER_API_KEY
-    }&q=Colombo&aqi=no`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setTemperature(data.current.temp_c);
-        setCondition(data.current.condition.text);
-        setConditionIconUrl(data.current.condition.icon);
-      });
-
-    return () => {};
+    (async () => {
+      const weatherData = await getWeatherData();
+      setTemperature(weatherData.temp_c);
+      setCondition(weatherData.condition.text);
+      setConditionIconUrl(weatherData.condition.icon);
+    })();
   }, []);
 
   return (
