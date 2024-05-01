@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import {
   Bodies,
+  Body,
   Engine,
   Mouse,
   MouseConstraint,
@@ -8,6 +10,8 @@ import {
   Runner,
   World,
 } from "matter-js";
+
+import { useBreakpoint } from "../../../../hooks";
 
 import { RigidBody } from "./RigidBody";
 import { mySkills } from "./Skills";
@@ -17,7 +21,6 @@ export const PhysicsWorld = () => {
   const actualSceneRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<Engine>(Engine.create());
   const worldRef = useRef<World>(engineRef.current.world);
-  const mouseRef = useRef<Mouse>(null);
   const [sceneWidth, setSceneWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -107,11 +110,39 @@ export const PhysicsWorld = () => {
     };
   }, []);
 
+  const shakeRigidBodies = useCallback(() => {
+    worldRef.current.bodies.forEach((body) => {
+      const forceMagnitude = 0.1 * body.mass;
+      const angle = Math.random() * Math.PI * 2;
+      const force = {
+        x: forceMagnitude * Math.cos(angle),
+        y: forceMagnitude * Math.sin(angle),
+      };
+      Body.applyForce(body, body.position, force);
+    });
+  }, []);
+
+  const { isSm } = useBreakpoint("sm");
+
   return (
-    <div className="p-4 w-full h-full">
+    <div className="p-4 w-full h-full relative">
+      <div
+        className={clsx("absolute z-50", {
+          "top-8 left-8": isSm,
+          "top-6 left-6": !isSm,
+        })}
+      >
+        <button
+          onClick={shakeRigidBodies}
+          className="text-xs bg-black p-2 px-4 rounded-md"
+        >
+          Shake
+        </button>
+      </div>
+
       <div className="relative w-full h-full overflow-hidden">
         <div
-          className="w-full h-full absolute rounded-[2.5rem] overflow-hidden z-20 scale-[0.15] transform origin-top-right right-2 top-2 sm:right-8 sm:top-8"
+          className="w-full h-full absolute rounded-[2.5rem] overflow-hidden z-20 scale-[0.15] transform origin-top-right right-2 top-2 sm:right-4 sm:top-4"
           ref={virtualSceneRef}
         ></div>
         <div

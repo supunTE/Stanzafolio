@@ -10,6 +10,11 @@ export const iconUrls: Record<string, Icon> = {
     alt: "profile",
     label: "Profile",
   },
+  skills: {
+    src: "https://img.icons8.com/3d-fluency/94/job.png",
+    alt: "wrench",
+    label: "Skills",
+  },
   achievements: {
     src: "https://img.icons8.com/3d-fluency/94/trophy.png",
     alt: "trophy",
@@ -19,10 +24,5 @@ export const iconUrls: Record<string, Icon> = {
     src: "https://img.icons8.com/3d-fluency/94/suitcase.png",
     alt: "suitcase",
     label: "Experiences",
-  },
-  skills: {
-    src: "https://img.icons8.com/3d-fluency/94/job.png",
-    alt: "wrench",
-    label: "Skills",
   },
 } as const;

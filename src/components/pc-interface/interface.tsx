@@ -118,6 +118,13 @@ export function Interface() {
             onOpened={(item: string) => {
               addItemToOpenedWindows(item);
             }}
+            iconKey="skills"
+          />
+          <PCIcon
+            clickedIcon={clickedIcon}
+            onOpened={(item: string) => {
+              addItemToOpenedWindows(item);
+            }}
             iconKey="achievements"
           />
           <PCIcon
@@ -126,13 +133,6 @@ export function Interface() {
               addItemToOpenedWindows(item);
             }}
             iconKey="experiences"
-          />
-          <PCIcon
-            clickedIcon={clickedIcon}
-            onOpened={(item: string) => {
-              addItemToOpenedWindows(item);
-            }}
-            iconKey="skills"
           />
         </div>
         <Taskbar />
