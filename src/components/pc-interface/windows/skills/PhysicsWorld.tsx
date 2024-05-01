@@ -13,8 +13,8 @@ import {
 
 import { useBreakpoint } from "../../../../hooks";
 
+import { mySkills } from "./mySkills";
 import { RigidBody } from "./RigidBody";
-import { mySkills } from "./Skills";
 
 export const PhysicsWorld = () => {
   const virtualSceneRef = useRef<HTMLDivElement>(null);
@@ -155,6 +155,7 @@ export const PhysicsWorld = () => {
               world={worldRef.current}
               sceneWidth={sceneWidth}
               icon={skill.icon}
+              iconInverted={skill.iconInverted}
               key={skill.name}
             >
               {skill.name}

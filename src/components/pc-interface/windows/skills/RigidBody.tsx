@@ -6,6 +6,7 @@ type RigidBodyProps = {
   engine: Engine;
   world: World;
   icon: string;
+  iconInverted?: string;
   sceneWidth: number;
   children: ReactNode;
 };
@@ -14,6 +15,7 @@ export function RigidBody({
   engine,
   world,
   icon,
+  iconInverted,
   sceneWidth,
   children,
 }: RigidBodyProps) {
@@ -68,14 +70,21 @@ export function RigidBody({
   return (
     <div
       ref={bodyRef}
-      className="absolute p-2 sm:p-6 lg:p-10 2xl:p-12 text-xs sm:text-md xl:text-lg w-max aspect-square rounded-full flex flex-col items-center justify-center bg-white border text-black shadow-sm
+      className="absolute group p-2 sm:p-6 lg:p-10 2xl:p-12 text-xs sm:text-md xl:text-lg w-max aspect-square rounded-full flex flex-col items-center justify-center bg-white border text-black shadow-sm
        min-w-16 min-h-16 sm:min-w-24 sm:min-h-24 hover:bg-black hover:text-white transition-colors duration-300"
     >
-      <img
-        src={icon}
-        alt=""
-        className="w-5 h-5 sm:w-10 sm:h-10 object-contain"
-      />
+      <div className="relative">
+        <img
+          src={icon}
+          alt=""
+          className="w-5 h-5 sm:w-10 sm:h-10 object-contain group-hover:opacity-0 transition-opacity duration-300"
+        />
+        <img
+          src={iconInverted || icon}
+          alt=""
+          className="w-5 h-5 sm:w-10 sm:h-10 object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        />
+      </div>
       {children}
     </div>
   );

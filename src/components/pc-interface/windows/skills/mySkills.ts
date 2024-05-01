@@ -3,6 +3,7 @@ import { skillIcons } from "../../../../assets/vectors/skills";
 export type Skill = {
   name: string;
   icon: string;
+  iconInverted?: string;
 };
 
 export const mySkills: Skill[] = [
@@ -24,7 +25,11 @@ export const mySkills: Skill[] = [
   { name: "Jest", icon: skillIcons.jest },
   { name: "Redux", icon: skillIcons.redux },
   { name: "Git", icon: skillIcons.git },
-  { name: "GitHub", icon: skillIcons.github },
+  {
+    name: "GitHub",
+    icon: skillIcons.github,
+    iconInverted: skillIcons.github_inverted,
+  },
   { name: "Flutter", icon: skillIcons.flutter },
   { name: "Figma", icon: skillIcons.figma },
   { name: "Postman", icon: skillIcons.postman },
