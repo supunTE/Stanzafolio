@@ -34,7 +34,7 @@ export function RigidBody({
       body: Bodies.circle(
         clamp(Math.random() * sceneWidth, 30, sceneWidth - 30),
         20,
-        rigidBodyWidth / 2,
+        rigidBodyWidth / 2 + 1.5,
         {
           frictionAir: 0.05,
           //   restitution: 0.8,
