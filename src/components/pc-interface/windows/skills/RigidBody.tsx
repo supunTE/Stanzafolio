@@ -25,7 +25,7 @@ export function RigidBody({
     // console.log("RigidBody mounted", engine, world);
     if (!engine || !world || sceneWidth == 0) return;
 
-    const rigidBodyWidth = bodyRef.current.clientWidth;
+    const rigidBodyWidth = bodyRef.current.offsetWidth;
     // const rigidBodyHeight = bodyRef.current.clientHeight;
 
     // console.log(sceneWidth);
@@ -36,7 +36,7 @@ export function RigidBody({
       body: Bodies.circle(
         clamp(Math.random() * sceneWidth, 30, sceneWidth - 30),
         20,
-        rigidBodyWidth / 2 + 1.5,
+        rigidBodyWidth / 2,
         {
           frictionAir: 0.05,
           //   restitution: 0.8,

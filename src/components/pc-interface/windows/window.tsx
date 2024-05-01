@@ -19,7 +19,7 @@ export function Window({ id, children = null }: WindowProps) {
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}
     >
-      <div className="bg-[#e6ffed]/80 backdrop-blur-xl flex flex-col border border-white shadow-sm w-full h-full rounded-md">
+      <div className="bg-[#e6ffed]/80 backdrop-blur-xl flex flex-col border border-white shadow-sm w-full h-full rounded-md overflow-hidden">
         <div className="flex justify-between items-center bg-[#77ff9d] text-black p-2">
           <h1 className="text-sm font-bold px-2 flex items-center gap-2">
             <img
