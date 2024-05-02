@@ -3,7 +3,7 @@ import { iconUrls } from "../store";
 import { Achievements } from "./achievements/achievements";
 import { Profile } from "./profile/profile";
 import { Skills } from "./skills/skills";
-import { Experiences } from "./experiences";
+import { Experiences } from "./experiences/experiences";
 
 type windowKeys = keyof typeof iconUrls;
 
