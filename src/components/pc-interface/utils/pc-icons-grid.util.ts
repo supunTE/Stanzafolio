@@ -21,7 +21,7 @@ export function usePCIconsGrid({
     if (!windowRef.current) return;
 
     const setRowsAndCols = () => {
-      setColsNum(Math.floor(windowRef.current?.offsetWidth / 90));
+      setColsNum(Math.floor(windowRef.current?.offsetWidth / (96 + 16)));
       setRowsNum(Math.floor(windowRef.current?.offsetHeight / 110) - 2);
     };
 

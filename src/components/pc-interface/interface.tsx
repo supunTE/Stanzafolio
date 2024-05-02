@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import useLocalStorage from "use-local-storage";
 
 import { assets } from "../../assets";
 import { useBreakpoint } from "../../hooks";
@@ -70,6 +71,7 @@ export function Interface() {
   };
 
   const navigate = useNavigate();
+  const [cameraPosition] = useLocalStorage<number[]>("cameraPosition", []);
 
   if (!isInterfaceImagesLoaded) return <InterfaceLoading />;
 
@@ -125,9 +127,21 @@ export function Interface() {
           <PCIcon
             clickedIcon={clickedIcon}
             onOpened={() => {
+              if (
+                cameraPosition &&
+                Array.isArray(cameraPosition) &&
+                cameraPosition.length === 3
+              ) {
+                const pos = cameraPosition
+                  .map((pos) => pos.toFixed(2))
+                  .join(",");
+                console.log(pos, "pos");
+                return navigate(`/?pos=${pos}`);
+              }
               navigate("/");
             }}
             iconKey={"shutdown"}
+            className="order-last"
           />
         </div>
         <Taskbar />

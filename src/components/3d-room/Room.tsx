@@ -2,8 +2,8 @@
 Splitted 3D Model using: https://github.com/pmndrs/gltfjsx
 */
 
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpring } from "@react-spring/three";
 import { Stage, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -168,12 +168,29 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
   const navigate = useNavigate();
   const { gl, scene, camera } = useThree();
   const [_renderImage, setRenderImage] = useLocalStorage("renderImage", "");
+  const [_cameraPosition, setCameraPosition] = useLocalStorage<number[]>(
+    "cameraPosition",
+    []
+  );
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const cameraPos = searchParams.get("pos");
+    if (cameraPos) {
+      const cameraPosArray = cameraPos.split(",").map((pos) => parseFloat(pos));
+      if (cameraPosArray.length !== 3) return;
+      camera.position.fromArray(cameraPosArray);
+      // reset search params
+      setSearchParams({});
+    }
+  }, []);
 
   const logInToPC = (e) => {
     e.stopPropagation();
     gl.render(scene, camera);
     const dataURL = gl.domElement.toDataURL();
     setRenderImage(dataURL);
+    setCameraPosition(camera.position.toArray());
     navigate("/info");
   };
 

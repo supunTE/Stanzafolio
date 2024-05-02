@@ -11,9 +11,15 @@ type PCIconProps = {
   iconKey: keyof typeof iconUrls;
   clickedIcon: [string, Dispatch<SetStateAction<string>>];
   onOpened: (item: string) => void;
+  className?: string;
 };
 
-export function PCIcon({ iconKey, clickedIcon, onOpened }: PCIconProps) {
+export function PCIcon({
+  iconKey,
+  clickedIcon,
+  onOpened,
+  className,
+}: PCIconProps) {
   const label = iconUrls[iconKey].label;
   const src = iconUrls[iconKey].src;
   const alt = iconUrls[iconKey].alt;
@@ -45,7 +51,8 @@ export function PCIcon({ iconKey, clickedIcon, onOpened }: PCIconProps) {
             "border-0 border-gray-100/0": !isClicked,
             "opacity-40": isDragging,
             handle: isSm,
-          }
+          },
+          className
         )}
         ref={pcIconRef}
         onClick={(e) => {
