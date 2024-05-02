@@ -1,30 +1,13 @@
-# React + TypeScript + Vite
+# Stanzafolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Stanzafolio, my 3D room-themed portfolio website.
 
-Currently, two official plugins are available:
+According to Farrell's ["From Portafoglio to Eportfolio: The Evolution of Portfolio in Higher Education"](https://jime.open.ac.uk/articles/10.5334/jime.574) article:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> The word portfolio’s etymology derives from the Italian word portafoglio. This was a case or folder for carrying loose papers or pictures. Porta means to carry and folio means loose sheet of paper (Oxford English Dictionary 2006; Lam 2018)
 
-## Expanding the ESLint configuration
+The name "Stanzafolio" is a fusion of "stanza" (Italian for "room") and "folio" (representing a container of papers/data).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The 3D scene is created using React Three Fiber, a ReactJs wrapper for ThreeJS. The interface was developed with ReactJs and various other technologies.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+🚧 This website is still under development and will continue to evolve further.
