@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 export function EducationBox() {
   return (
-    <div className="h-full relative text-black flex flex-col sm:p-2 gap-2">
+    <div className="h-full overflow-y-auto interface-scrollbar relative text-black flex flex-col sm:p-2 gap-2">
       <h4 className="text-xl font-bold jetbrains-mono">Education</h4>
       <div className="grid grid-cols-[30px_1fr] gap-2 gap-y-6 row-auto relative">
         <div className="absolute h-full w-0.5 ml-3.5 bg-gray-400 z-0" />

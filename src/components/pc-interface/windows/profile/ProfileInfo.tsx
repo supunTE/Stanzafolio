@@ -15,7 +15,7 @@ export function ProfileInfo(): JSX.Element {
     "bg-white rounded-lg shadow-sm hover:shadow-md ring-2 ring-transparent hover:ring-blue-400 transition-all duration-300";
 
   return (
-    <div className="grid lg:grid-cols-2 2xl:grid-cols-3 auto-rows-[200px] p-4 gap-4 interface-scrollbar sm:overflow-y-scroll h-full">
+    <div className="grid lg:grid-cols-1 2lg:grid-cols-2 2xl:grid-cols-3 auto-rows-[200px] p-4 gap-4 interface-scrollbar sm:overflow-y-scroll h-full">
       <div className={clsx(boxCss, "p-4 row-span-2")}>
         <CountryBox />
       </div>
@@ -31,13 +31,18 @@ export function ProfileInfo(): JSX.Element {
       <div className={clsx(boxCss, "overflow-hidden order-11 sm:order-none")}>
         <FlappyBox />
       </div>
-      <div className={clsx(boxCss, "p-4 col-span-1 md:col-span-2")}>
+      <div
+        className={clsx(
+          boxCss,
+          "p-4 2lg:col-span-2 2lg:order-10 2xl:order-none"
+        )}
+      >
         <InterestsBox />
       </div>
       <div className={clsx()}>
         <StatusBox />
       </div>
-      <div className={clsx(boxCss, "p-4")}>
+      <div className={clsx(boxCss, "p-4 2lg:order-10 2xl:order-none")}>
         <QuoteBox />
       </div>
       <div className={clsx(boxCss, "order-12 overflow-hidden")}>

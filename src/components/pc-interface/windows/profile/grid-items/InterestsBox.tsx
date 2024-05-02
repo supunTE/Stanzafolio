@@ -38,7 +38,7 @@ export function InterestsBox() {
   return (
     <div className="h-full relative text-black flex flex-col sm:p-2 gap-3">
       <h4 className="text-xl font-bold jetbrains-mono">Interests</h4>
-      <div className="flex justify-center -space-x-[4.5rem] xl:space-x-2">
+      <div className="flex justify-center -space-x-[4.5rem] 2lg:space-x-1">
         {thumbnails.map((thumbnail, i) => (
           <InterestCard
             key={i}
@@ -101,12 +101,3 @@ export function InterestCard({
     </motion.div>
   );
 }
-
-// reading
-// Illustration by <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-// gaming
-//Illustration by <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-// movies
-// Illustration by <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-// languages
-// writing

@@ -32,7 +32,7 @@ export function Timeline({
 
   return (
     <div
-      className=" w-[600%] pr-4 sm:w-[400%] lg:w-[200%] h-full"
+      className="w-[600%] pr-28 xl:pr-4 sm:w-[400%] lg:w-[200%] h-full"
       ref={timelineNodesRef}
     >
       <div className="flex justify-between bg-neutral-200 rounded-full items-center h-full p-2">
@@ -219,7 +219,7 @@ function MiniCard({ achievement }: { achievement: Achievement }) {
   return (
     <div
       className={clsx(
-        "group order-last scale-75 origin-left hover:z-40",
+        "group order-last scale-90 origin-left hover:z-40",
         "text-black bg-white max-w-[200px] min-w-[140px] p-2 shadow-md rounded-md z-10 opacity-40",
         "hover:opacity-100 hover:shadow-lg hover:bg-neutral-700 hover:text-white hover:border-neutral-900",
         "transition-all duration-300"

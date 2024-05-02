@@ -41,7 +41,9 @@ export function StatusBox() {
               </div>
             </div>
 
-            <p className="text-xs -mt-1 text-gray-500">Colombo, Sri Lanka</p>
+            <p className="text-xs -mt-1 text-gray-500 text-center">
+              Colombo, Sri Lanka
+            </p>
           </>
         ) : (
           <div className="animate-spin h-5 w-5 bg-gradient-to-br from-blue-200 from-50% to-50% to-blue-400"></div>

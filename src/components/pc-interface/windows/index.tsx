@@ -1,8 +1,8 @@
 import { iconUrls } from "../store";
 
+import { Achievements } from "./achievements/achievements";
 import { Profile } from "./profile/profile";
 import { Skills } from "./skills/skills";
-import { Achievements } from "./achievements/achievements";
 import { Experiences } from "./experiences";
 
 type windowKeys = keyof typeof iconUrls;
