@@ -29,7 +29,7 @@ export function Experiences(): JSX.Element {
   return (
     <Window id="experiences">
       <div className="flex p-4 h-full overflow-hidden">
-        <div className="w-full h-full overflow-y-auto pr-4 pb-8 interface-scrollbar">
+        <div className="w-full h-full overflow-y-scroll pr-2 sm:pr-4 pb-8 interface-scrollbar">
           <div className="mb-4">
             <ToggleBar
               label="Experiences"

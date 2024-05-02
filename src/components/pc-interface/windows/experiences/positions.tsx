@@ -27,14 +27,19 @@ export function Positions({ showExperiences }: PositionsProps) {
   return (
     <motion.div
       layout
-      className="p-4 bg-neutral-100 overflow-hidden rounded-md my-4 mt-2 grid grid-cols-[minmax(400px,_1fr)_400px_200px] gap-y-2 text-neutral-800"
+      className={clsx(
+        "p-1 sm:p-4 bg-neutral-100 rounded-md my-4 mt-2 gap-y-2 text-neutral-800",
+        "grid grid-cols-1",
+        " xl:grid-cols-[minmax(400px,_1fr)_400px] 2xl:grid-cols-[minmax(400px,_1fr)_400px_200px]"
+      )}
       animate={showExperiences ? "show" : "hide"}
       variants={variants}
     >
-      <div className={clsx(titlebarStyles)}>Title</div>
-      <div className={clsx(titlebarStyles)}>Company/Organization</div>
-      <div className={clsx(titlebarStyles)}>Time</div>
-
+      <div className={clsx(titlebarStyles, "hidden xl:block")}>Title</div>
+      <div className={clsx(titlebarStyles, "hidden xl:block")}>
+        Company/Organization
+      </div>
+      <div className={clsx(titlebarStyles, "hidden 2xl:block")}>Time</div>
       {myExperiences.map((experience, index) => (
         <PositionBar
           key={index}

@@ -26,12 +26,12 @@ export const myProjects: Project[] = [
 //https://github.com/supunTE/SL-COVID19-REPORT
 // bom
 
-type Time = {
+export type Time = {
   month?: number;
   year: number;
 };
 
-type Technology = {
+export type Technology = {
   name: string;
   icon?: string;
 };

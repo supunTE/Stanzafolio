@@ -6,7 +6,7 @@ export function StatusBar() {
   const { time, date } = useTime();
 
   return (
-    <div className="h-16 p-4">
+    <div className="h-12 p-2">
       <div className="flex relative items-center justify-between bg-white text-black h-full w-full rounded-full">
         <div></div>
         <div className="flex justify-center w-full gap-4">
