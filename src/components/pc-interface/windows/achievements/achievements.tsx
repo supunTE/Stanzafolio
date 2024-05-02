@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Window } from "../window";
 
-import { Timeline } from "./TimelinePoints";
+import { Timeline } from "./Timeline";
 
 export function Achievements(): JSX.Element {
   const spaceRef = useRef<HTMLDivElement>(null);

@@ -225,8 +225,17 @@ function MiniCard({ achievement }: { achievement: Achievement }) {
         "transition-all duration-300"
       )}
     >
-      <div className="text-sm font-semibold jetbrains-mono">
-        {achievement.name}
+      <div className="text-sm font-semibold jetbrains-mono flex items-baseline gap-2 whitespace-nowrap">
+        {achievement.name}{" "}
+        {achievement.lead ? (
+          <span className="text-xs bg-green-200 rounded-full p-0.5 px-2 text-black">
+            Team Lead
+          </span>
+        ) : achievement.team ? (
+          <span className="text-xs bg-green-200 rounded-full p-0.5 px-2 text-black">
+            Team
+          </span>
+        ) : null}
       </div>
       <div className="text-xs">
         {achievement.label} - {achievement.month.year}
