@@ -176,13 +176,15 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
 
   useEffect(() => {
     const cameraPos = searchParams.get("pos");
+
     if (cameraPos) {
       const cameraPosArray = cameraPos.split(",").map((pos) => parseFloat(pos));
       if (cameraPosArray.length !== 3) return;
       camera.position.fromArray(cameraPosArray);
-      // reset search params
-      setSearchParams({});
     }
+
+    // reset search params
+    setSearchParams({});
   }, []);
 
   const logInToPC = (e) => {

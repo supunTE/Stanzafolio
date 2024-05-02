@@ -127,18 +127,17 @@ export function Interface() {
           <PCIcon
             clickedIcon={clickedIcon}
             onOpened={() => {
+              let pos = "";
+
               if (
                 cameraPosition &&
                 Array.isArray(cameraPosition) &&
                 cameraPosition.length === 3
               ) {
-                const pos = cameraPosition
-                  .map((pos) => pos.toFixed(2))
-                  .join(",");
-                console.log(pos, "pos");
-                return navigate(`/?pos=${pos}`);
+                pos = cameraPosition.map((pos) => pos.toFixed(2)).join(",");
               }
-              navigate("/");
+
+              return navigate(`/?pos=${pos}`);
             }}
             iconKey={"shutdown"}
             className="order-last"
