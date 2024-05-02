@@ -1,28 +1,37 @@
+import { desktopIcons } from "../../../assets/vectors/desktop";
+
 type Icon = {
   src: string;
   alt: string;
   label: string;
+  hide?: boolean;
 };
 
 export const iconUrls: Record<string, Icon> = {
   profile: {
-    src: "https://img.icons8.com/3d-fluency/94/user-male.png",
+    src: desktopIcons.user,
     alt: "profile",
     label: "Profile",
   },
   skills: {
-    src: "https://img.icons8.com/3d-fluency/94/job.png",
+    src: desktopIcons.wrench,
     alt: "wrench",
     label: "Skills",
   },
   achievements: {
-    src: "https://img.icons8.com/3d-fluency/94/trophy.png",
+    src: desktopIcons.trophy,
     alt: "trophy",
     label: "Achievements",
   },
   experiences: {
-    src: "https://img.icons8.com/3d-fluency/94/suitcase.png",
+    src: desktopIcons.suitcase,
     alt: "suitcase",
     label: "Experiences",
   },
-} as const;
+  shutdown: {
+    src: desktopIcons.shutdown,
+    alt: "shutdown",
+    label: "Shutdown",
+    hide: true,
+  },
+};

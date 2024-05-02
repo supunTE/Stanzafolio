@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import { assets } from "../../assets";
@@ -69,6 +69,8 @@ export function Interface() {
     state.openWindow(item);
   };
 
+  const navigate = useNavigate();
+
   if (!isInterfaceImagesLoaded) return <InterfaceLoading />;
 
   return (
@@ -106,33 +108,26 @@ export function Interface() {
               );
             })}
           </AnimatePresence>
+
+          {Object.keys(iconUrls).map((icon) => {
+            if (iconUrls[icon].hide) return null;
+            return (
+              <PCIcon
+                clickedIcon={clickedIcon}
+                onOpened={(item: string) => {
+                  addItemToOpenedWindows(item);
+                }}
+                iconKey={icon}
+              />
+            );
+          })}
+
           <PCIcon
             clickedIcon={clickedIcon}
-            onOpened={(item: string) => {
-              addItemToOpenedWindows(item);
+            onOpened={() => {
+              navigate("/");
             }}
-            iconKey="profile"
-          />
-          <PCIcon
-            clickedIcon={clickedIcon}
-            onOpened={(item: string) => {
-              addItemToOpenedWindows(item);
-            }}
-            iconKey="skills"
-          />
-          <PCIcon
-            clickedIcon={clickedIcon}
-            onOpened={(item: string) => {
-              addItemToOpenedWindows(item);
-            }}
-            iconKey="achievements"
-          />
-          <PCIcon
-            clickedIcon={clickedIcon}
-            onOpened={(item: string) => {
-              addItemToOpenedWindows(item);
-            }}
-            iconKey="experiences"
+            iconKey={"shutdown"}
           />
         </div>
         <Taskbar />
