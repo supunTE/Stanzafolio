@@ -13,16 +13,31 @@ export function Experiences(): JSX.Element {
   const [showExperiences, setShowExperiences] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
 
+  const variants = {
+    show: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.3 },
+    },
+    hide: {
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
     <Window id="experiences">
       <div className="flex p-4 h-full overflow-hidden">
         <div className="w-full h-full overflow-y-auto pr-4 pb-8 interface-scrollbar">
-          <ToggleBar
-            label="Experiences"
-            onClick={() => setShowExperiences(!showExperiences)}
-            isExpanded={showExperiences}
-          />
-          <Positions showExperiences={showExperiences} />
+          <div className="mb-4">
+            <ToggleBar
+              label="Experiences"
+              onClick={() => setShowExperiences(!showExperiences)}
+              isExpanded={showExperiences}
+            />
+            <Positions showExperiences={showExperiences} />
+          </div>
 
           <ToggleBar
             label="Projects"
@@ -31,12 +46,9 @@ export function Experiences(): JSX.Element {
           />
           <motion.div
             layout
-            className="p-2 bg-white/40 rounded-md my-4 mt-2"
-            animate={{
-              height: showProjects ? "auto" : 0,
-              opacity: showProjects ? 1 : 0,
-            }}
-            transition={{ duration: 0.2 }}
+            className="p-2 bg-white/40 rounded-md my-4 mt-2 overflow-hidden"
+            animate={showProjects ? "show" : "hide"}
+            variants={variants}
           >
             {myExperiences.map((experience, index) => (
               <PositionBar key={index} experience={experience} />
@@ -56,7 +68,7 @@ type ToggleBarProps = {
 
 export function ToggleBar({ label, onClick, isExpanded }: ToggleBarProps) {
   return (
-    <div className="flex items-center" onClick={onClick}>
+    <motion.div layout className="flex items-center" onClick={onClick}>
       <div
         className={clsx(
           "z-10 jetbrains-mono",
@@ -71,6 +83,6 @@ export function ToggleBar({ label, onClick, isExpanded }: ToggleBarProps) {
         {label}
       </div>
       <div className="h-[0.5px] flex-1 bg-neutral-400"></div>
-    </div>
+    </motion.div>
   );
 }
