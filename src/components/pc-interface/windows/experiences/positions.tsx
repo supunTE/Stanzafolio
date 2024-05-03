@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
+import { expandVariants } from "./animationVariants";
 import { myExperiences } from "./myExperiences";
 import { PositionBar } from "./PositionBar";
 
@@ -11,19 +12,6 @@ type PositionsProps = {
 export function Positions({ showExperiences }: PositionsProps) {
   const titlebarStyles = "px-4 py-2 text-sm text-neutral-500 font-semibold";
 
-  const variants = {
-    show: {
-      opacity: 1,
-      height: "auto",
-      transition: { duration: 0.3 },
-    },
-    hide: {
-      opacity: 0,
-      height: 0,
-      transition: { duration: 0.3 },
-    },
-  };
-
   return (
     <motion.div
       layout
@@ -33,7 +21,7 @@ export function Positions({ showExperiences }: PositionsProps) {
         " xl:grid-cols-[minmax(400px,_1fr)_400px] 2xl:grid-cols-[minmax(400px,_1fr)_400px_200px]"
       )}
       animate={showExperiences ? "show" : "hide"}
-      variants={variants}
+      variants={expandVariants}
     >
       <div className={clsx(titlebarStyles, "hidden xl:block")}>Title</div>
       <div className={clsx(titlebarStyles, "hidden xl:block")}>

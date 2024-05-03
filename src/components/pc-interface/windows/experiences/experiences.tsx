@@ -5,26 +5,12 @@ import { motion } from "framer-motion";
 
 import { Window } from "../window";
 
-import { myExperiences } from "./myExperiences";
-import { PositionBar } from "./PositionBar";
 import { Positions } from "./positions";
+import { Projects } from "./projects";
 
 export function Experiences(): JSX.Element {
   const [showExperiences, setShowExperiences] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
-
-  const variants = {
-    show: {
-      opacity: 1,
-      height: "auto",
-      transition: { duration: 0.3 },
-    },
-    hide: {
-      opacity: 0,
-      height: 0,
-      transition: { duration: 0.3 },
-    },
-  };
 
   return (
     <Window id="experiences">
@@ -39,21 +25,14 @@ export function Experiences(): JSX.Element {
             <Positions showExperiences={showExperiences} />
           </div>
 
-          <ToggleBar
-            label="Projects"
-            onClick={() => setShowProjects(!showProjects)}
-            isExpanded={showProjects}
-          />
-          <motion.div
-            layout
-            className="p-2 bg-white/40 rounded-md my-4 mt-2 overflow-hidden"
-            animate={showProjects ? "show" : "hide"}
-            variants={variants}
-          >
-            {myExperiences.map((experience, index) => (
-              <PositionBar key={index} experience={experience} />
-            ))}
-          </motion.div>
+          <div className="mb-4">
+            <ToggleBar
+              label="Projects"
+              onClick={() => setShowProjects(!showProjects)}
+              isExpanded={showProjects}
+            />
+            <Projects showProjects={showProjects} />
+          </div>
         </div>
       </div>
     </Window>

@@ -3,29 +3,6 @@ import {
   skillIcons,
 } from "../../../../assets/vectors/skills";
 
-export type Project = {
-  name: string;
-  image: string;
-  description: string;
-  link: string;
-};
-
-export const myProjects: Project[] = [
-  {
-    name: "Razor",
-    image: "https://via.placeholder.com/150",
-    description: "Online multiplayer type racing game",
-    link: "https://github.com/the-ai-team/razor",
-  },
-];
-
-// https://github.com/supunTE/Stanzafolio
-//https://github.com/supunTE/kala-pavura
-// https://github.com/supunTE/Minecrafty
-// https://github.com/supunTE/IslandLink
-//https://github.com/supunTE/SL-COVID19-REPORT
-// bom
-
 export type Time = {
   month?: number;
   year: number;
@@ -62,6 +39,10 @@ const technologies: Partial<Record<technologyKeys, Technology>> = {
     name: "TypeScript",
     icon: skillIcons.typescript,
   },
+  socketio: {
+    name: "Socket.IO",
+    icon: skillIcons.socketio,
+  },
   flutter: {
     name: "Flutter",
     icon: skillIcons.flutter,
@@ -73,6 +54,18 @@ const technologies: Partial<Record<technologyKeys, Technology>> = {
   gcp: {
     name: "GCP",
     icon: otherTechnologies.gcp,
+  },
+  threejs: {
+    name: "Three.js",
+    icon: skillIcons.threejs,
+  },
+  js: {
+    name: "JavaScript",
+    icon: skillIcons.js,
+  },
+  jekyll: {
+    name: "Jekyll",
+    icon: otherTechnologies.jekyll,
   },
 };
 
@@ -90,6 +83,79 @@ const organizations: Record<string, Organization> = {
     url: "https://acicts.lk/",
   },
 };
+
+export type Project = {
+  name: string;
+  description: string;
+  link: string;
+  previewLink?: string;
+  color: string;
+  technologies?: Technology[];
+  team?: boolean;
+};
+
+export const myProjects: Project[] = [
+  {
+    name: "Razor",
+    description: "A free and open-source typing racing platform.",
+    link: "https://github.com/the-ai-team/razor",
+    color: "#F55C5C",
+    technologies: [
+      technologies.reactjs,
+      technologies.nodejs,
+      technologies.socketio,
+      technologies.typescript,
+    ],
+  },
+  {
+    name: "Stanzafolio",
+    description: "My personal portfolio website. (You're here!)",
+    link: "https://github.com/supunTE/Stanzafolio",
+    color: "#77FF9D",
+    technologies: [
+      technologies.reactjs,
+      technologies.threejs,
+      technologies.typescript,
+    ],
+  },
+  {
+    name: "Kala Pavura",
+    description: "A social media platform for artists. (Under development)",
+    link: "https://github.com/supunTE/kala-pavura",
+    color: "#2DA1E4",
+    technologies: [
+      technologies.reactjs,
+      technologies.nodejs,
+      technologies.typescript,
+      technologies.firebase,
+    ],
+  },
+  {
+    name: "Minecrafty",
+    description: "A Minecraft-type mini terrain generator.",
+    link: "https://github.com/supunTE/Minecrafty",
+    color: "#48D13C",
+    technologies: [technologies.reactjs, technologies.threejs],
+  },
+  {
+    name: "IslandLink",
+    description:
+      "A mobile UI prototype for the digital nomad community visiting Sri Lanka, as part of a team project for a contest.",
+    link: "https://github.com/supunTE/IslandLink",
+    color: "#028090",
+    technologies: [technologies.reactjs],
+    team: true,
+  },
+  {
+    name: "SL COVID-19 Report",
+    description:
+      "A simple web app to view real-time COVID-19 stats in Sri Lanka. Developed and maintained as a team.",
+    link: "https://github.com/rivi-sl/SL-COVID19-REPORT",
+    color: "#F55C5C",
+    technologies: [technologies.js, technologies.jekyll],
+    team: true,
+  },
+];
 
 export const months = [
   "January",

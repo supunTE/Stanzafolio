@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { ArrowSquareOut, File, Info } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 import { MouseState, useCursorStore } from "../../store";
 
@@ -17,6 +19,49 @@ export function PositionBar({
     commonStyles += " border-b border-neutral-400/30";
   }
 
+  const [infoHovered, setInfoHovered] = useState(false);
+  console.log(infoHovered);
+  const infoAnimationVariants = {
+    show: {
+      opacity: 1,
+      visibility: "visible" as const,
+      display: "block",
+      left: 36,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    hide: {
+      opacity: 0.2,
+      visibility: "hidden" as const,
+      display: "none",
+      left: 48,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+  const infoAnimationVariantsFromBottom = {
+    show: {
+      opacity: 1,
+      visibility: "visible" as const,
+      display: "block",
+      bottom: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    hide: {
+      opacity: 0.2,
+      visibility: "hidden" as const,
+      display: "none",
+      bottom: 8,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <>
       <div
@@ -26,7 +71,7 @@ export function PositionBar({
         )}
       >
         <div className="flex items-center text-black gap-2 xl:flex-row">
-          <div className="flex flex-1 flex-col md:flex-row md:items-center gap-2">
+          <div className="flex flex-1 lg:flex-none xl:flex-1 flex-col md:flex-row md:items-center gap-2">
             <div className="flex items-center gap-2">
               <File size={20} weight="fill" className="w-6 h-6" />
               {experience.title}
@@ -48,41 +93,53 @@ export function PositionBar({
           {experience.description && (
             <div className="hidden lg:block relative h-full">
               <div
+                className="p-0.5 bg-gray-200 rounded-full ml-1"
+                onMouseOver={() => setInfoHovered(true)}
+                onMouseLeave={() => setInfoHovered(false)}
+              >
+                <Info size={16} className="w-5 h-5 text-neutral-500 z-40" />
+              </div>
+              <motion.div
                 className={clsx(
-                  "text-black border border-neutral-700 text-sm shadow-md font-normal opacity-0",
-                  "min-w-64",
-                  "absolute -left-4 top-2 -translate-y-1/2",
-                  "group-hover/bar:opacity-100 group-hover/bar:left-8 ",
+                  "text-black border border-neutral-700 text-sm shadow-md font-normal min-w-64",
+                  "absolute top-2 -translate-y-1/2 pointer-events-none",
                   "bg-gray-200 p-2 rounded-md z-50 transition-all duration-300"
-                  //"
                 )}
+                variants={infoAnimationVariants}
+                animate={infoHovered ? "show" : "hide"}
               >
                 {/* arrow head towards topic */}
                 <div className="absolute w-2 h-2 left-[-5px] top-1/2 bg-gray-200 border-neutral-700 border-l border-b transform rotate-45" />
-
                 {experience.description}
-              </div>
+              </motion.div>
             </div>
           )}
 
           {experience.description && (
             <div className="block lg:hidden h-full">
-              <Info size={20} className="w-6 h-6 peer z-40" />
               <div
+                className="p-0.5 bg-gray-200 rounded-full ml-1"
+                onMouseOver={() => setInfoHovered(true)}
+                onMouseLeave={() => setInfoHovered(false)}
+              >
+                <Info size={16} className="w-5 h-5 text-neutral-500 z-40" />
+              </div>
+              <motion.div
                 className={clsx(
                   "text-black border border-neutral-700 text-sm shadow-md font-normal opacity-0",
                   "w-full lg:min-w-64",
-                  "peer-hover:opacity-100 peer-hover:-bottom-4",
-                  "absolute bottom-6 left-0",
+                  // "peer-hover:opacity-100 peer-hover:-bottom-4 bottom-6",
+                  "absolute left-0",
                   "bg-gray-200 p-2 rounded-md z-50 transition-all duration-300"
-                  // -left-4 top-2 -translate-y-1/2"
                 )}
+                variants={infoAnimationVariantsFromBottom}
+                animate={infoHovered ? "show" : "hide"}
               >
                 {/* arrow head towards topic */}
                 <div className="absolute w-2 h-2 top-[-5px] lg:left-[-5px] lg:top-1/2 bg-gray-200 border-neutral-700 border-l border-b transform rotate-[135deg] lg:rotate-45" />
 
                 {experience.description}
-              </div>
+              </motion.div>
             </div>
           )}
         </div>
@@ -175,7 +232,7 @@ function TechCell({ experience }: { experience: Experience }) {
             alt={technology.name}
             className="w-6 h-6 object-contain"
           />
-          <div className="group-hover:opacity-100 opacity-0 absolute text-xs bg-white p-1 px-2 rounded-md shadow-sm left-1/2 top-8 -translate-x-1/2 z-30 text-center transition-all duration-300">
+          <div className="group-hover:opacity-100 opacity-0 absolute text-xs bg-white p-1 px-2 rounded-md shadow-sm left-1/2 top-8 -translate-x-1/2 z-30 text-center transition-all duration-300 hidden group-hover:block">
             {technology.name}
           </div>
         </div>

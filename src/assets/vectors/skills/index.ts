@@ -11,6 +11,7 @@ import github from "./github.png";
 import github_inverted from "./github_inverted.png";
 import html from "./html.png";
 import ionic from "./ionic.png";
+import jekyll from "./jekyll.png";
 import jest from "./jest.png";
 import js from "./js.png";
 import nextjs from "./nextjs.png";
@@ -29,6 +30,7 @@ export const otherTechnologies = {
   ionic,
   angular,
   gcp,
+  jekyll,
 };
 
 export const skillIcons = {
