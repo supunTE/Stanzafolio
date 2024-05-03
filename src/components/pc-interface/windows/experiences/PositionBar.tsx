@@ -175,7 +175,7 @@ function TechCell({ experience }: { experience: Experience }) {
             alt={technology.name}
             className="w-6 h-6 object-contain"
           />
-          <div className="group-hover:opacity-100 opacity-0 absolute text-xs bg-white p-1 px-2 rounded-md shadow-sm -left-1/2 top-8 z-30 text-center transition-all duration-300">
+          <div className="group-hover:opacity-100 opacity-0 absolute text-xs bg-white p-1 px-2 rounded-md shadow-sm left-1/2 top-8 -translate-x-1/2 z-30 text-center transition-all duration-300">
             {technology.name}
           </div>
         </div>
