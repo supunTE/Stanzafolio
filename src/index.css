@@ -47,11 +47,18 @@ body {
 @media (max-width: 640px) {
   .messageWrapper {
     position: absolute;
-    bottom: 0;
     transform: unset !important;
     width: 100%;
     height: 100%;
   }
+}
+
+.banner {
+  position: absolute;
+  bottom: 0;
+  transform: unset !important;
+  width: 100%;
+  height: 100%;
 }
 
 .scrolling-text {

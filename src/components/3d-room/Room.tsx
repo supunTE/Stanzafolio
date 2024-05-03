@@ -5,13 +5,14 @@ Splitted 3D Model using: https://github.com/pmndrs/gltfjsx
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpring } from "@react-spring/three";
-import { Stage, useGLTF } from "@react-three/drei";
+import { Html, Stage, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import { Mesh } from "three";
 import useLocalStorage from "use-local-storage";
 
 import { furnitureColors } from "./furnitureColors";
+import { InfoBanner } from "./InfoBanner";
 import { ModelParentGroup } from "./ModelGroup";
 
 export function RoomModel(props: JSX.IntrinsicElements["group"]) {
@@ -40,6 +41,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     "cameraPosition",
     []
   );
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -75,6 +77,9 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
       preset="portrait"
       adjustCamera={1.5}
     >
+      <Html wrapperClass="banner" className="w-screen h-screen">
+        <InfoBanner />
+      </Html>
       <group {...props} dispose={null}>
         <ModelParentGroup
           floatIntensity={0}

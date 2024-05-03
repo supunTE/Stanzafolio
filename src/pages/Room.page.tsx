@@ -71,6 +71,7 @@ export function RoomPage() {
       <Canvas
         eventPrefix="client"
         className="r3f"
+        // frameloop="demand"
         style={{ background: "transparent" }}
       >
         <pointLight
