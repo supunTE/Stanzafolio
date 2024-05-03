@@ -67,7 +67,7 @@ export function RoomPage() {
           </div>
         </>
       )}
-      <Leva collapsed={!isSm} hidden={isProd} />
+      <Leva collapsed={!isSm} />
       <Canvas
         eventPrefix="client"
         className="r3f"
