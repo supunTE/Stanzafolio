@@ -67,9 +67,6 @@ export function RoomPage() {
           </div>
         </>
       )}
-      <h1 className="text-[8rem] sm:text-[10rem] flex justify-center items-center p-2 w-full h-full absolute">
-        3D Room
-      </h1>
       <Leva collapsed={!isSm} hidden={isProd} />
       <Canvas
         eventPrefix="client"

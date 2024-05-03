@@ -11,6 +11,7 @@ import { useControls } from "leva";
 import { Mesh } from "three";
 import useLocalStorage from "use-local-storage";
 
+import { furnitureColors } from "./furnitureColors";
 import { ModelParentGroup } from "./ModelGroup";
 
 export function RoomModel(props: JSX.IntrinsicElements["group"]) {
@@ -23,142 +24,9 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     },
   });
 
-  const materialColors = useControls(
-    "Material Colors",
-    {
-      chairCushionColor: {
-        value: "#414141",
-        label: "Chair Cushion Color",
-      },
-      chairPillowColor: {
-        value: "#e89646",
-        label: "Chair Pillow Color",
-      },
-      chairHandleColor: {
-        value: "#343434",
-        label: "Chair Handle Color",
-      },
-      chairMetalColor: {
-        value: "#414141",
-        label: "Chair Metal Color",
-      },
-      chairWheelColor: {
-        value: "#414141",
-        label: "Chair Wheel Color",
-      },
-      tableColor: {
-        value: "#6f3e19",
-        label: "Table Color",
-      },
-      computerFrameColor: {
-        value: "#2a2a2a",
-        label: "Computer Frame Color",
-      },
-      monitorScreenColor: {
-        value: "#61ff84",
-        label: "Monitor Screen Color",
-      },
-      mouseLightColor: {
-        value: "#ff0000",
-        label: "Mouse Light Color",
-      },
-      mousePadColor: {
-        value: "#454545",
-        label: "Mouse Pad Color",
-      },
-      speakerCanvasColor: {
-        value: "#525252",
-        label: "Speaker Canvas Color",
-      },
-      speakerButtonColor: {
-        value: "#fff",
-        label: "Speaker Button Color",
-      },
-      keyboardColor: {
-        value: "#2a2a31",
-        label: "Keyboard Color",
-      },
-      cupHolderColor: {
-        value: "#934a00",
-        label: "Cup Holder Color",
-      },
-      mugColor: {
-        value: "#c0c0c0",
-        label: "Mug Color",
-      },
-      coffeeColor: {
-        value: "#241307",
-        label: "Coffee Color",
-      },
-      grassColor: {
-        value: "#3b7811",
-        label: "Grass Color",
-      },
-      matColor: {
-        value: "#02522b",
-        label: "Mat Color",
-      },
-      matLettersColor: {
-        value: "#ab5e06",
-        label: "Mat Letters Color",
-      },
-      cupboardColor: {
-        value: "#b387ff",
-        label: "Cupboard Color",
-      },
-      cupboardMetalColor: {
-        value: "#321c4f",
-        label: "Cupboard Metal Color",
-      },
-      cupboardKeyColor: {
-        value: "#321c4f",
-        label: "Cupboard Key Color",
-      },
-      fanBodyColor: {
-        value: "#6dffe7",
-        label: "Fan Body Color",
-      },
-      fanBladeColor: {
-        value: "#cdfff7",
-        label: "Fan Blade Color",
-      },
-      fanPlateColor: {
-        value: "#00957c",
-        label: "Fan Plate Color",
-      },
-      fanButtonColor: {
-        value: "#82e3d3",
-        label: "Fan Button Color",
-      },
-      fanBtn1HoverColor: {
-        value: "#21c496",
-        label: "Fan Button 1 Hover Color",
-      },
-      fanBtn2HoverColor: {
-        value: "#078c66",
-        label: "Fan Button 2 Hover Color",
-      },
-      fanBtn3HoverColor: {
-        value: "#0f5441",
-        label: "Fan Button 3 Hover Color",
-      },
-      fanBtnOffHoverColor: {
-        value: "#323131",
-        label: "Fan Button Off Hover Color",
-      },
-      bulbColor: {
-        value: "#fffb29",
-        label: "Bulb Color",
-      },
-      bulbWireColor: {
-        value: "#000000",
-        label: "Bulb Wire Color",
-      },
-    },
-    {
-      collapsed: true,
-    }
-  );
+  const materialColors = useControls("Material Colors", furnitureColors, {
+    collapsed: true,
+  });
 
   useFrame(() => {
     if (!fanBladesRef.current) return;
@@ -216,7 +84,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Room",
-                clickedColor: "#FFFF61",
+                clickedColor: materialColors.wallColor,
                 clickedContent: "It's just the wall and floor. 🧱",
                 showComingSoonLabel: true,
               },
@@ -225,7 +93,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Tiles",
-                clickedColor: "#010112",
+                clickedColor: materialColors.floorColor,
                 meshMaterial: {
                   roughness: 0.5,
                 },
@@ -235,7 +103,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Bin",
-                clickedColor: "#fff",
+                clickedColor: materialColors.binColor,
                 position: [-3.238, 0.7, -3.282],
               },
             },
@@ -243,7 +111,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Rack",
-                clickedColor: "#fff",
+                clickedColor: materialColors.rackColor,
                 position: [-3.256, 3.233, -1.357],
               },
             },
@@ -256,7 +124,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Bed_Sheet",
-                clickedColor: "#7aadff",
+                clickedColor: materialColors.bedSheetColor,
                 clickedContent:
                   "Smart developers recharge with a \nday-time sleep. 🌞",
                 position: [2.325, 1.688, -0.908],
@@ -266,7 +134,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Bed_Pillow",
-                clickedColor: "#C3C5FF",
+                clickedColor: materialColors.bedPillowColor,
                 position: [2.473, 1.925, -0.311],
                 rotation: [-Math.PI, 0.657, -Math.PI],
               },
@@ -275,7 +143,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Bed_Pillow_Small",
-                clickedColor: "#C3C5FF",
+                clickedColor: materialColors.bedPillowColor,
                 position: [1.404, 1.846, 1.352],
                 rotation: [-Math.PI, 1.299, -Math.PI],
               },
@@ -284,7 +152,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               childType: "mesh",
               props: {
                 modelKey: "Bed_Frame",
-                clickedColor: "#7F4B4B",
+                clickedColor: materialColors.bedFrameColor,
                 position: [2.347, 1.494, -0.872],
               },
             },
@@ -299,14 +167,14 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     childType: "mesh",
                     props: {
                       modelKey: "Cube037",
-                      clickedColor: "#0f0f0f",
+                      clickedColor: materialColors.phoneColor,
                     },
                   },
                   {
                     childType: "mesh",
                     props: {
                       modelKey: "Cube037_1",
-                      clickedColor: "#0f0f0f",
+                      clickedColor: materialColors.phoneColor,
                       meshMaterial: {
                         roughness: 0.4,
                       },
@@ -316,7 +184,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     childType: "mesh",
                     props: {
                       modelKey: "Cube037_2",
-                      clickedColor: "#0f0f0f",
+                      clickedColor: materialColors.phoneColor,
                       meshMaterial: {
                         roughness: 0.6,
                       },
@@ -817,6 +685,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               props: {
                 modelKey: "Cupboard_Frame",
                 clickedColor: materialColors.cupboardColor,
+                contentTheme: "dark",
                 position: [-1.186, 3.455, -3.061],
                 clickedContent: "No skeletons here, just old code. 🪶",
                 showComingSoonLabel: true,
