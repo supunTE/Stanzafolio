@@ -52,9 +52,7 @@ function App() {
           setTimeout(function () {
             document
               .getElementById("resizerElementCloseButton")
-              .addEventListener("click", function (e) {
-                t();
-              }),
+              .addEventListener("click", t),
               d.classList.remove("-translate-y-full"),
               d.classList.add("mt-3");
           }, 1);
