@@ -3,13 +3,23 @@ import { Info } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import useLocalStorage from "use-local-storage";
 
+import { HoverMaintainer } from "../utils";
+
 export function InfoBanner() {
   const bannerRef = useRef<HTMLDivElement>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
   const [firstVisit, setFirstVisit] = useLocalStorage("firstVisit", true);
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const stopPropagation = (e: MouseEvent) => e.stopPropagation();
+    const stopPropagation = (e: MouseEvent) => {
+      if (e.target != spanRef.current) {
+        e.stopPropagation();
+      } else {
+        HoverMaintainer.setClickedGroup("Computer");
+        setShowBanner(false);
+      }
+    };
 
     if (firstVisit) setShowBanner(true);
     setFirstVisit(false);
@@ -60,7 +70,10 @@ export function InfoBanner() {
         <div className="max-w-96 mt-6 text-neutral-600 text-center">
           <span>
             Click on the
-            <span className="bg-green-200 rounded-md px-2 py-1 mx-2">
+            <span
+              ref={spanRef}
+              className="bg-green-200 rounded-md px-2 py-1 mx-2 cursor-pointer"
+            >
               {" "}
               computer 🖥️{" "}
             </span>
