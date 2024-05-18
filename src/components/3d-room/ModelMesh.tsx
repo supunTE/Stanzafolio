@@ -8,8 +8,10 @@ import {
 import { Html, Outlines, useGLTF } from "@react-three/drei";
 import { MeshProps, ThreeEvent } from "@react-three/fiber";
 import clsx from "clsx";
-import { Color, Mesh, MeshStandardMaterial } from "three";
+import { useControls } from "leva";
+import { Color, Mesh } from "three";
 
+import { useBreakpoint } from "../../hooks";
 import { GLTFResult } from "../../models";
 import { HoverMaintainer } from "../utils/hover-maintainer";
 
@@ -19,11 +21,11 @@ export type ModelMeshProps = {
   lightUpKeys?: string[];
   individualHoveredColor?: string;
   clickedColor: string;
-  meshMaterial?: Partial<MeshStandardMaterial>;
   children?: ReactNode | ReactNode[];
   hoveredContent?: string | ReactNode;
   clickedContentInfo?: string;
   clickedContent?: string | ReactNode;
+  clickedButtons?: ReactNode;
   contentTheme?: "light" | "dark";
   onHover?: ((e: ThreeEvent<PointerEvent>) => void) | null;
   outlineOpacity?: number;
@@ -32,6 +34,7 @@ export type ModelMeshProps = {
 
 type SpringProps = {
   color: Color;
+  emissiveColor: Color;
   outlineColor: Color;
   outlineOpacity: number;
 };
@@ -43,12 +46,12 @@ const ModelMesh = forwardRef(
     {
       groupKey,
       modelKey,
-      meshMaterial,
       individualHoveredColor,
       clickedColor,
       onClick,
       clickedContentInfo,
       clickedContent,
+      clickedButtons,
       outlineOpacity = 0.5,
       children = null,
       contentTheme = "light",
@@ -90,18 +93,34 @@ const ModelMesh = forwardRef(
     const { nodes } = useGLTF("/room.glb") as GLTFResult;
 
     const [isIamHovered, setIsIamHovered] = useState(false);
+    const { isSm } = useBreakpoint("sm");
+
+    const colors = useControls("Material Colors", {
+      emissiveColor: {
+        value: "#898989",
+        label: "Emissive Color",
+      },
+      nightColor: {
+        value: "#123",
+        label: "Night Color",
+      },
+    });
 
     const {
       color,
+      emissiveColor,
       outlineColor,
       outlineOpacity: outlineOpacitySpring,
     } = useSpring<SpringProps>({
       color:
         isIamHovered && individualHoveredColor
           ? individualHoveredColor
-          : isClicked || isLightUp
+          : isLightUp
+          ? colors.nightColor
+          : isClicked
           ? clickedColor
           : "#fff",
+      emissiveColor: isClicked || isLightUp ? "#000" : colors.emissiveColor,
       outlineColor: isHovered ? "#555" : "#fff",
       outlineOpacity: isHovered ? outlineOpacity : 0,
       config: {
@@ -148,8 +167,6 @@ const ModelMesh = forwardRef(
         ref={ref}
         key={[groupKey, modelKey].join("-")}
         name={modelKey}
-        castShadow
-        receiveShadow
         geometry={nodes[modelKey].geometry}
         onPointerOver={(e) => {
           e.stopPropagation();
@@ -174,6 +191,7 @@ const ModelMesh = forwardRef(
           <Html
             wrapperClass={clsx("messageWrapper", { hidden: !isClicked })}
             className={"w-full h-full"}
+            zIndexRange={[21, 30]}
           >
             <animatedWeb.div
               className={clsx(
@@ -196,6 +214,8 @@ const ModelMesh = forwardRef(
                 </div>
               )}
 
+              {!isSm && clickedButtons}
+
               {showComingSoonLabel && (
                 <div className="absolute -bottom-4 right-2 text-xs text-gray-500 mt-2 bg-white p-1 px-2 rounded-md">
                   {randomPhrase}
@@ -204,10 +224,10 @@ const ModelMesh = forwardRef(
             </animatedWeb.div>
           </Html>
         )}
-        <animated.meshStandardMaterial
+        <animated.meshLambertMaterial
           flatShading={true}
           color={color}
-          {...meshMaterial}
+          emissive={emissiveColor}
         />
         <AnimatedOutlines
           opacity={outlineOpacitySpring}

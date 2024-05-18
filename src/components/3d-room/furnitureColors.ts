@@ -4,7 +4,7 @@ export const furnitureColors = {
     label: "Wall Color",
   },
   floorColor: {
-    value: "#010112",
+    value: "#34322e",
     label: "Tiles Color",
   },
   binColor: {
@@ -52,7 +52,7 @@ export const furnitureColors = {
     label: "Chair Wheel Color",
   },
   tableColor: {
-    value: "#6f3e19",
+    value: "#966036",
     label: "Table Color",
   },
   computerFrameColor: {
@@ -68,7 +68,7 @@ export const furnitureColors = {
     label: "Mouse Light Color",
   },
   mousePadColor: {
-    value: "#650000",
+    value: "#cb2c2c",
     label: "Mouse Pad Color",
   },
   speakerCanvasColor: {
@@ -136,15 +136,15 @@ export const furnitureColors = {
     label: "Fan Button Color",
   },
   fanBtn1HoverColor: {
-    value: "#21c496",
+    value: "#329075",
     label: "Fan Button 1 Hover Color",
   },
   fanBtn2HoverColor: {
-    value: "#078c66",
+    value: "#268066",
     label: "Fan Button 2 Hover Color",
   },
   fanBtn3HoverColor: {
-    value: "#0f5441",
+    value: "#01654c",
     label: "Fan Button 3 Hover Color",
   },
   fanBtnOffHoverColor: {

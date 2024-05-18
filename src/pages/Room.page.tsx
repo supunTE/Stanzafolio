@@ -71,7 +71,6 @@ export function RoomPage() {
       <Canvas
         eventPrefix="client"
         className="r3f"
-        // frameloop="demand"
         style={{ background: "transparent" }}
       >
         <pointLight
@@ -88,6 +87,8 @@ export function RoomPage() {
           makeDefault
           minPolarAngle={Math.PI * 0.2}
           maxPolarAngle={Math.PI * 0.6}
+          minAzimuthAngle={Math.PI * -0.5}
+          maxAzimuthAngle={Math.PI * 0.5}
           enablePan={false}
           dampingFactor={0.1}
         />

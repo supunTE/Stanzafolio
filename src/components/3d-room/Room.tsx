@@ -7,10 +7,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpring } from "@react-spring/three";
 import { Html, Stage, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import clsx from "clsx";
 import { useControls } from "leva";
 import { Mesh } from "three";
 import useLocalStorage from "use-local-storage";
 
+import { AboutLabel } from "./AboutLabel";
 import { furnitureColors } from "./furnitureColors";
 import { InfoBanner } from "./InfoBanner";
 import { ModelParentGroup } from "./ModelGroup";
@@ -25,13 +27,21 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     },
   });
 
+  const positions = useControls(
+    "Positions",
+    {
+      about: {
+        x: -4.01,
+        y: 0.4,
+        z: 0,
+      },
+    },
+    {
+      collapsed: true,
+    }
+  );
   const materialColors = useControls("Material Colors", furnitureColors, {
     collapsed: true,
-  });
-
-  useFrame(() => {
-    if (!fanBladesRef.current) return;
-    fanBladesRef.current.rotation.z += 0.06 * springBladeMultiplier.get();
   });
 
   const navigate = useNavigate();
@@ -41,6 +51,10 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     "cameraPosition",
     []
   );
+  useFrame(() => {
+    if (!fanBladesRef.current) return;
+    fanBladesRef.current.rotation.z += 0.06 * springBladeMultiplier.get();
+  });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -75,10 +89,25 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
       }}
       intensity={1}
       preset="portrait"
+      environment={null}
       adjustCamera={1.5}
     >
-      <Html wrapperClass="banner" className="w-screen h-screen">
+      <Html
+        wrapperClass="banner"
+        className="w-screen h-screen"
+        zIndexRange={[11, 20]}
+      >
         <InfoBanner />
+      </Html>
+      <Html
+        zIndexRange={[31, 40]}
+        position={[positions.about.x, positions.about.y, positions.about.z]}
+        rotation={[0, -Math.PI / 2, 0]}
+        occlude
+        transform
+        scale={0.5}
+      >
+        <AboutLabel />
       </Html>
       <group {...props} dispose={null}>
         <ModelParentGroup
@@ -99,9 +128,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
               props: {
                 modelKey: "Tiles",
                 clickedColor: materialColors.floorColor,
-                meshMaterial: {
-                  roughness: 0.5,
-                },
               },
             },
             {
@@ -180,9 +206,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Cube037_1",
                       clickedColor: materialColors.phoneColor,
-                      meshMaterial: {
-                        roughness: 0.4,
-                      },
                     },
                   },
                   {
@@ -190,9 +213,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Cube037_2",
                       clickedColor: materialColors.phoneColor,
-                      meshMaterial: {
-                        roughness: 0.6,
-                      },
                     },
                   },
                 ],
@@ -211,9 +231,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                 clickedColor: materialColors.chairCushionColor,
                 clickedContent: "🏆 Achievement unlocked:\nComfort Level 100",
                 contentTheme: "dark",
-                meshMaterial: {
-                  roughness: 0.6,
-                },
               },
             },
 
@@ -380,9 +397,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Cube001",
                       clickedColor: materialColors.computerFrameColor,
-                      meshMaterial: {
-                        roughness: 0.8,
-                      },
                     },
                   },
                   {
@@ -405,9 +419,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                           </button>
                         </>
                       ),
-                      meshMaterial: {
-                        roughness: 0.2,
-                      },
                     },
                   },
                 ],
@@ -465,9 +476,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Cube005",
                       clickedColor: materialColors.computerFrameColor,
-                      meshMaterial: {
-                        roughness: 0.6,
-                      },
                     },
                   },
                   {
@@ -522,9 +530,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Cube005",
                       clickedColor: materialColors.computerFrameColor,
-                      meshMaterial: {
-                        roughness: 0.6,
-                      },
                     },
                   },
                   {
@@ -578,9 +583,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                     props: {
                       modelKey: "Keyboard",
                       clickedColor: materialColors.keyboardColor,
-                      meshMaterial: {
-                        roughness: 0.6,
-                      },
                     },
                   },
                   {
@@ -794,12 +796,65 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                       clickedContent:
                         "Cooling down \nhot fixes and coffees. 🌀",
                       clickedContentInfo:
-                        fanBladeSpeedMultiplier === 3
+                        fanBladeSpeedMultiplier >= 2
                           ? "Feeling a chill? Lower the fan speed."
                           : fanBladeSpeedMultiplier <= 1
                           ? "Temp rising? Increase the fan speed."
                           : undefined,
                       ref: fanBladesRef,
+                      clickedButtons: (
+                        <div className="flex gap-1 mt-2 items-center justify-center">
+                          <div
+                            className={clsx(
+                              "p-1 px-4 rounded-md text-white ring-black/60 transition-all duration-300",
+                              fanBladeSpeedMultiplier == 0 && "ring-2"
+                            )}
+                            onClick={() => setFanBladeSpeedMultiplier(0)}
+                            style={{
+                              backgroundColor:
+                                materialColors.fanBtnOffHoverColor,
+                            }}
+                          >
+                            0
+                          </div>
+                          <div
+                            className={clsx(
+                              "p-1 px-4 rounded-md text-white ring-black/60 transition-all duration-300",
+                              fanBladeSpeedMultiplier == 1 && "ring-2"
+                            )}
+                            onClick={() => setFanBladeSpeedMultiplier(1)}
+                            style={{
+                              backgroundColor: materialColors.fanBtn1HoverColor,
+                            }}
+                          >
+                            1
+                          </div>
+                          <div
+                            className={clsx(
+                              "p-1 px-4 rounded-md text-white ring-black/60 transition-all duration-300",
+                              fanBladeSpeedMultiplier == 2 && "ring-2"
+                            )}
+                            onClick={() => setFanBladeSpeedMultiplier(2)}
+                            style={{
+                              backgroundColor: materialColors.fanBtn2HoverColor,
+                            }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className={clsx(
+                              "p-1 px-4 rounded-md text-white ring-black/60 transition-all duration-300",
+                              fanBladeSpeedMultiplier == 3 && "ring-2"
+                            )}
+                            onClick={() => setFanBladeSpeedMultiplier(3)}
+                            style={{
+                              backgroundColor: materialColors.fanBtn3HoverColor,
+                            }}
+                          >
+                            3
+                          </div>
+                        </div>
+                      ),
                     },
                   },
                   {
@@ -945,9 +1000,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                 modelKey: "Bulb_Holder",
                 position: [0.15, 6.391, 0.15],
                 clickedColor: materialColors.bulbWireColor,
-                meshMaterial: {
-                  roughness: 0.2,
-                },
               },
             },
             {
@@ -961,32 +1013,6 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
             },
           ]}
         />
-        {/* <mesh
-          name="Bulb"
-          castShadow
-          receiveShadow
-          geometry={nodes.Bulb.geometry}
-          material={nodes.Bulb.material}
-          position={[0.15, 6.323, 0.15]}
-          scale={3.531}
-        />
-        <mesh
-          name="Bulb_Holder"
-          castShadow
-          receiveShadow
-          geometry={nodes.Bulb_Holder.geometry}
-          material={nodes.Bulb_Holder.material}
-          position={[0.15, 6.391, 0.15]}
-        />
-        <mesh
-          name="Bulb_Wire"
-          castShadow
-          receiveShadow
-          geometry={nodes.Bulb_Wire.geometry}
-          material={nodes.Bulb_Wire.material}
-          position={[0.15, 8.242, 0.15]}
-          scale={[0.008, 0.046, 0.008]}
-        /> */}
       </group>
     </Stage>
   );
