@@ -116,6 +116,7 @@ export function Interface() {
             if (iconUrls[icon].hide) return null;
             return (
               <PCIcon
+                key={icon}
                 clickedIcon={clickedIcon}
                 onOpened={(item: string) => {
                   addItemToOpenedWindows(item);
