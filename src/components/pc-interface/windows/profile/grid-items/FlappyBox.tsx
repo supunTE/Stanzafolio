@@ -176,7 +176,7 @@ export function FlappyBox() {
         transition={{
           duration: 0.5,
         }}
-        className="game-over z-20 inset-0 absolute bg-white/40 backdrop-blur-md flex flex-col gap-2 items-center justify-center"
+        className="game-over z-20 inset-0 rounded-lg absolute bg-white/40 backdrop-blur-md flex flex-col gap-2 items-center justify-center"
       >
         <h2 className="text-black jetbrains-mono">Game Over</h2>
         <button

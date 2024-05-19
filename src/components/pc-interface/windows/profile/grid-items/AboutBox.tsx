@@ -15,12 +15,12 @@ export function AboutBox(): JSX.Element {
   return (
     <div className="h-full bg-black relative text-white">
       <div
-        className="grain absolute -inset-44 width-[200%] height-[200%] opacity-80"
+        className="grain absolute -inset-44 width-[200%] height-[200%] opacity-70"
         style={{ background: `url(${assets.noise})` }}
       ></div>
       <motion.div
         className="flex flex-col p-8 gap-3 items-center z-10"
-        initial={{ translateY: "100%" }}
+        initial={{ translateY: "40%" }}
         animate={{ translateY: "-100%" }}
         transition={{ duration: 32, repeat: Infinity, repeatDelay: 2 }}
       >
@@ -62,10 +62,10 @@ export function AboutBox(): JSX.Element {
 
         <h6 className={h6Style}>PC Background</h6>
         <p className={pStyle}>
-          Photo by{" "}
+          Photo by Photo by{" "}
           <a
             className={aStyle}
-            href="https://unsplash.com/@stefanbc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            href="https://unsplash.com/@vackground?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
             onMouseEnter={() => {
               cursorState.setMouseState(MouseState.LINK);
             }}
@@ -73,12 +73,12 @@ export function AboutBox(): JSX.Element {
               cursorState.resetMouseState();
             }}
           >
-            Stefan Cosma
+            vackground.com
           </a>{" "}
           on{" "}
           <a
             className={aStyle}
-            href="https://unsplash.com/photos/green-trees-on-green-grass-field-under-blue-sky-during-daytime-LkvjxaP5wNg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            href="https://unsplash.com/photos/a-green-and-yellow-background-with-wavy-lines-_CHTcNpKU1I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
             onMouseEnter={() => {
               cursorState.setMouseState(MouseState.LINK);
             }}
