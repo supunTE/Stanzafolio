@@ -5,7 +5,7 @@ Splitted 3D Model using: https://github.com/pmndrs/gltfjsx
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpring } from "@react-spring/three";
-import { Html, Stage, useGLTF } from "@react-three/drei";
+import { Html, Stage } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import clsx from "clsx";
 import { useControls } from "leva";
@@ -1017,5 +1017,3 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
     </Stage>
   );
 }
-
-useGLTF.preload("/room.glb");
