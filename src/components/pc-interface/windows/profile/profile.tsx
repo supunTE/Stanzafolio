@@ -1,3 +1,4 @@
+import { assets } from "../../../../assets";
 import { Window } from "../window";
 
 import { ProfileInfo } from "./ProfileInfo";
@@ -11,16 +12,16 @@ export function Profile(): JSX.Element {
           <div className="relative">
             <img
               className="rounded-lg overflow-hidden bg-cover"
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              src={assets.photo}
               alt="profile-img"
             />
-            <div className="absolute bottom-0 border border-gray-400 shadow-sm bg-white p-1 rounded-md flex justify-between w-full">
-              <span className="text-black text-sm text-center w-full">
+            <div className="absolute -bottom-4 flex justify-between w-full px-2">
+              <span className="text-black text-sm text-center w-full border border-gray-400 shadow-sm bg-white p-1 rounded-md ">
                 😉 Love to Learn!
               </span>
             </div>
           </div>
-          <h1 className="text-black font-bold text-2xl py-4 text-center jetbrains-mono">
+          <h1 className="text-black font-bold text-2xl py-4 mt-4 text-center jetbrains-mono">
             Supun Tharinda Edirisuriya
             <div className="text-sm">(supTE)</div>
             <div className="text-xs mt-2 text-gray-500">He/him</div>
