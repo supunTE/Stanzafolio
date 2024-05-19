@@ -9,14 +9,14 @@ export function Router() {
   const location = useLocation();
 
   return (
-    <AnimatePresence>
-      <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
+      <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<RoomPage />} />
           <Route path="/info" element={<InfoPage />} />
         </Routes>
-      </Suspense>
-    </AnimatePresence>
+      </AnimatePresence>
+    </Suspense>
   );
 }
 
