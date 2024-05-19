@@ -33,7 +33,8 @@ export function PCIcon({
 
   return (
     <Draggable
-      scale={1}
+      axis="both"
+      handle=".handle"
       bounds="parent"
       onStart={() => {
         setIsDragging(true);
@@ -41,7 +42,6 @@ export function PCIcon({
       onStop={() => {
         setIsDragging(false);
       }}
-      handle=".handle"
     >
       <div
         className={clsx(

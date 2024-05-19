@@ -8,7 +8,6 @@ import { assets } from "../../assets";
 import { useBreakpoint } from "../../hooks";
 
 import { usePCIconsGrid } from "./utils/pc-icons-grid.util";
-import { Cursor } from "./cursor";
 import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
 import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
@@ -16,6 +15,7 @@ import { StatusBar } from "./statusBar";
 import { iconUrls, useWindowManagerStore } from "./store";
 import { Taskbar } from "./taskbar";
 import { windows } from "./windows";
+import { Cursor } from "./cursor";
 
 export function Interface() {
   const windowRef = useRef<HTMLDivElement>(null);
@@ -45,8 +45,8 @@ export function Interface() {
     const activeWindowsParam = searchParams.get("activeWindows");
     const allWindowsParam = searchParams.get("allWindows");
 
-    console.log(activeWindowsParam, "activeWindowsParam");
-    console.log(allWindowsParam, "allWindowsParam");
+    // console.log(activeWindowsParam, "activeWindowsParam");
+    // console.log(allWindowsParam, "allWindowsParam");
 
     if (allWindowsParam) {
       const allWindows = allWindowsParam.split(",");
@@ -146,6 +146,7 @@ export function Interface() {
             }}
             iconKey={"shutdown"}
             className={clsx(
+              "absolute bottom-4 right-4",
               !gridAvailable && "opacity-0 pointer-events-none",
               "order-last"
             )}
