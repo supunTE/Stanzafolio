@@ -16,7 +16,7 @@ export function ProfileInfo(): JSX.Element {
 
   return (
     <div className="grid lg:grid-cols-1 2lg:grid-cols-2 2xl:grid-cols-3 auto-rows-[200px] p-4 gap-4 interface-scrollbar sm:overflow-y-scroll h-full">
-      <div className={clsx(boxCss, "p-4 row-span-2")}>
+      <div className={clsx(boxCss, "p-4 row-span-2 overflow-hidden")}>
         <CountryBox />
       </div>
       <div className={clsx(boxCss, "p-4")}>
