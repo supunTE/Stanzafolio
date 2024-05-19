@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { ArrowsInSimple, X } from "@phosphor-icons/react";
+import clsx from "clsx";
 import { motion } from "framer-motion";
 
 import { iconUrls, useWindowManagerStore } from "../store";
@@ -11,6 +12,18 @@ type WindowProps = {
 
 export function Window({ id, children = null }: WindowProps) {
   const state = useWindowManagerStore();
+
+  const [closeClicked, setCloseClicked] = useState(false);
+  useEffect(() => {
+    if (!closeClicked) return;
+    const closeClickTimeout = setTimeout(() => {
+      setCloseClicked(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(closeClickTimeout);
+    };
+  }, [closeClicked]);
 
   return (
     <motion.div
@@ -29,7 +42,7 @@ export function Window({ id, children = null }: WindowProps) {
             />
             {iconUrls[id].label}
           </h1>
-          <div className="flex gap-2">
+          <div className="flex gap-2 relative">
             <div
               onClick={() => {
                 state.minimizeWindow(id);
@@ -39,6 +52,9 @@ export function Window({ id, children = null }: WindowProps) {
               <ArrowsInSimple size={16} />
             </div>
             <div
+              onClick={() => {
+                setCloseClicked(true);
+              }}
               onDoubleClick={() => {
                 state.closeWindow(id);
               }}
@@ -46,6 +62,17 @@ export function Window({ id, children = null }: WindowProps) {
             >
               <X size={16} />
             </div>
+            <motion.div
+              className={clsx(
+                "absolute top-7 p-0.5 px-2 shadow-md rounded-full right-0 z-40 text-xs bg-white text-black flex gap-1 text-nowrap items-center origin-top-right"
+              )}
+              animate={{
+                opacity: closeClicked ? 1 : 0,
+                scale: closeClicked ? 1 : 0,
+              }}
+            >
+              Double click/tap to close
+            </motion.div>
           </div>
         </div>
         {children}

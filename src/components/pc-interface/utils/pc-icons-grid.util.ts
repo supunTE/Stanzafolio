@@ -8,6 +8,7 @@ type PCIconsGridHookProps = {
 type PCIconsGridHookResult = {
   colsNum: number;
   rowsNum: number;
+  gridAvailable: boolean;
 };
 
 export function usePCIconsGrid({
@@ -16,8 +17,10 @@ export function usePCIconsGrid({
 }: PCIconsGridHookProps): PCIconsGridHookResult {
   const [colsNum, setColsNum] = useState(1);
   const [rowsNum, setRowsNum] = useState(1);
+  const [gridAvailable, setGridAvailable] = useState(false);
 
   useEffect(() => {
+    setGridAvailable(false);
     if (!windowRef.current) return;
 
     const setRowsAndCols = () => {
@@ -28,11 +31,12 @@ export function usePCIconsGrid({
     setRowsAndCols();
 
     window.addEventListener("resize", setRowsAndCols);
+    setGridAvailable(true);
 
     return () => {
       window.removeEventListener("resize", setRowsAndCols);
     };
   }, [windowRef, isInterfaceImagesLoaded]);
 
-  return { colsNum, rowsNum };
+  return { colsNum, rowsNum, gridAvailable };
 }

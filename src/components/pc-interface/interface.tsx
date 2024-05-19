@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import clsx from "clsx";
 import { AnimatePresence } from "framer-motion";
 import useLocalStorage from "use-local-storage";
 
@@ -23,7 +24,7 @@ export function Interface() {
   const { isSm } = useBreakpoint("sm");
 
   const isInterfaceImagesLoaded = useInterfaceImageLoader();
-  const { colsNum, rowsNum } = usePCIconsGrid({
+  const { colsNum, rowsNum, gridAvailable } = usePCIconsGrid({
     windowRef,
     isInterfaceImagesLoaded,
   });
@@ -90,7 +91,7 @@ export function Interface() {
         {!isSm && <StatusBar />}
 
         <div
-          className="flex-1 relative grid justify-items-center items-start gap-2 p-4"
+          className="flex-1 relative grid justify-items-center items-start gap-2 p-4 transition-all duration-300"
           style={{
             gridTemplateColumns: `repeat(${colsNum}, 1fr)`,
             gridTemplateRows: `repeat(${rowsNum}, 1fr)`,
@@ -120,6 +121,9 @@ export function Interface() {
                   addItemToOpenedWindows(item);
                 }}
                 iconKey={icon}
+                className={clsx(
+                  !gridAvailable && "opacity-0 pointer-events-none"
+                )}
               />
             );
           })}
@@ -140,7 +144,10 @@ export function Interface() {
               return navigate(`/?pos=${pos}`);
             }}
             iconKey={"shutdown"}
-            className="order-last"
+            className={clsx(
+              !gridAvailable && "opacity-0 pointer-events-none",
+              "order-last"
+            )}
           />
         </div>
         <Taskbar />
