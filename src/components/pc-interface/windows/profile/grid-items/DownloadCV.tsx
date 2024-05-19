@@ -11,7 +11,7 @@ export function DownloadCV() {
       <div
         className={clsx(
           "text-xl font-bold p-2 rounded-full px-6 bg-white jetbrains-mono flex gap-2 items-center justify-center z-10",
-          "hover:bg-violet-800 transition-all duration-300 hover:text-white cursor-pointer hover:shadow-lg"
+          "hover:bg-violet-800 transition-all duration-300 hover:text-white hover:shadow-lg"
         )}
         onMouseEnter={() => {
           cursorState.setMouseState(MouseState.DOWNLOAD);

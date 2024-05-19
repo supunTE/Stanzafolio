@@ -43,7 +43,7 @@ export function AboutLabel() {
         </span>
         by
         <a
-          className="font-semibold z-50 hover:bg-white bg-white/20 rounded-full p-1 px-2 underline-offset-2 transition-all duration-300 hover:text-black"
+          className="font-semibold z-50 cursor-pointer hover:bg-white bg-white/20 rounded-full p-1 px-2 underline-offset-2 transition-all duration-300 hover:text-black"
           href="https://github.com/supunTE"
           target="_blank"
           rel="noreferrer"

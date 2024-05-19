@@ -37,7 +37,7 @@ export const useMouseCursorMove = ({
       const keyframes = { top: `${cursorY}px`, left: `${cursorX}px` };
 
       cursorRef.current.animate(keyframes, {
-        duration: 100,
+        duration: 10,
         fill: "forwards",
         easing: "ease-out",
       });

@@ -8,6 +8,7 @@ import { assets } from "../../assets";
 import { useBreakpoint } from "../../hooks";
 
 import { usePCIconsGrid } from "./utils/pc-icons-grid.util";
+import { Cursor } from "./cursor";
 import { useInterfaceImageLoader, useMouseCursorMove } from "./hooks";
 import { InterfaceLoading } from "./interface.loading";
 import { PCIcon } from "./PCIcon";
@@ -15,7 +16,6 @@ import { StatusBar } from "./statusBar";
 import { iconUrls, useWindowManagerStore } from "./store";
 import { Taskbar } from "./taskbar";
 import { windows } from "./windows";
-import { Cursor } from "./cursor";
 
 export function Interface() {
   const windowRef = useRef<HTMLDivElement>(null);
@@ -80,7 +80,7 @@ export function Interface() {
     <>
       <div
         ref={windowRef}
-        className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative"
+        className="bg-cover rounded-xl shadow-sm border overflow-hidden border-gray-200 w-full h-full flex flex-col relative cursor-none"
         style={{ backgroundImage: `url(${assets.desktopBackground})` }}
         onClick={() => {
           setClickedIcon("");

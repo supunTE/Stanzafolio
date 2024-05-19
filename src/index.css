@@ -44,6 +44,11 @@ body {
   font-size: 16px;
 }
 
+a,
+button {
+  cursor: none;
+}
+
 @media (max-width: 640px) {
   .messageWrapper {
     position: absolute;

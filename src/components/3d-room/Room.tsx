@@ -412,7 +412,7 @@ export function RoomModel(props: JSX.IntrinsicElements["group"]) {
                           </span>
                           <br />
                           <button
-                            className="p-2 px-4 mt-2 bg-gray-800 text-white rounded-full z-[100]"
+                            className="p-2 px-4 mt-2 bg-gray-800 text-white rounded-full z-[100] cursor-pointer"
                             onClick={logInToPC}
                           >
                             Log into this PC

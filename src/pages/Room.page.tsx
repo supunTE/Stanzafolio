@@ -23,10 +23,6 @@ export default function RoomPage() {
     useState<HoverItemGroup | null>(null);
 
   useEffect(() => {
-    document.body.style.cursor = hoveredGroup !== null ? "pointer" : "auto";
-  }, [hoveredGroup]);
-
-  useEffect(() => {
     const onHoveredGroupChanged = (hoveredGroup: string) => {
       setHoveredGroup(hoveredGroup);
       setRegisteredGroups(HoverMaintainer.getAllRegisteredItems());
