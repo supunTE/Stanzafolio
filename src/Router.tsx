@@ -1,5 +1,5 @@
-import { lazy, Suspense } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 const RoomPage = lazy(() => import("./pages/Room.page"));
@@ -14,6 +14,7 @@ export function Router() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<RoomPage />} />
           <Route path="/info" element={<InfoPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
     </Suspense>
@@ -28,4 +29,14 @@ function Loading() {
       </div>
     </div>
   );
+}
+
+function NotFound() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, [navigate]);
+
+  return null;
 }
