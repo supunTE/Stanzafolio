@@ -3,7 +3,7 @@ import useLocalStorage from "use-local-storage";
 
 import { InterfaceFrame } from "../components";
 
-export function InfoPage() {
+export default function InfoPage() {
   const [renderImage] = useLocalStorage("renderImage", "");
 
   return (

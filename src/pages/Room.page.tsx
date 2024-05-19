@@ -13,7 +13,7 @@ import {
 } from "../components";
 import { useBreakpoint } from "../hooks";
 
-export function RoomPage() {
+export default function RoomPage() {
   const { isSm } = useBreakpoint("sm");
   const isProd = import.meta.env.PROD;
 
