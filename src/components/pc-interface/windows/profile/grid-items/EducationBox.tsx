@@ -37,7 +37,7 @@ export function EducationBox() {
             </div>
           </div>
         </div>
-        <TimelinePoint start="2023" end="Now" active={true} />
+        <TimelinePoint start="2022" end="Present" active={true} />
         <div>
           <h5 className="text-sm font-semibold">
             University of Westminster, UK
@@ -87,7 +87,7 @@ function TimelinePoint({
       </div>
       <div
         className={clsx(
-          "group-hover:opacity-100 opacity-0 text-nowrap absolute transition-all duration-300 text-xs scale-90 text-center bg-white border-gray-300 border rounded-md p-1.5 text-gray-500 z-5",
+          "group-hover:opacity-100 opacity-0 text-nowrap absolute left-0 transition-all duration-300 text-xs scale-90 text-center bg-white border-gray-300 border rounded-md p-1.5 text-gray-500 z-5",
           {
             "mt-10": active,
             "mt-8": !active,

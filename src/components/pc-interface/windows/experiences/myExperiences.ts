@@ -200,20 +200,20 @@ export const myExperiences: Experience[] = [
       "Contributed as an organizer to the successful execution of the inaugural annual Intra School IT competition, BITS.",
   },
   {
-    title: "Developer",
-    project: "Battle of Maroons Live Score App",
-    company: organizations.acicts,
-    date: [{ year: 2019 }],
-    description:
-      "Developed the Battle of Maroons Live Score App, providing real-time score updates for Ananda College's cricket big match.",
-    technologies: [technologies.angular, technologies.firebase],
-  },
-  {
     title: "Organizer",
     project: "BITS",
     company: organizations.acicts,
     date: [{ year: 2019 }],
     description: "Continued involvement as an Organizer for BITS in 2019.",
+  },
+  {
+    title: "Developer",
+    project: "Battle of Maroons Live Score App",
+    company: organizations.acicts,
+    date: [{ year: 2020 }],
+    description:
+      "Developed the Battle of Maroons Live Score App, providing real-time score updates for Ananda College's cricket big match.",
+    technologies: [technologies.angular, technologies.firebase],
   },
   {
     title: "Secretary",
