@@ -149,9 +149,29 @@ export const myAchievements: Record<number, Achievement[]> = {
       organizer:
         "IEEE Student Branch, University of Colombo School of Computing",
       month: { year: 2024, month: 3 },
-      url: "https://revolux.ucscieee.lk/",
+      url: "https://www.linkedin.com/posts/supunte_revolux-uiux-designathon-activity-7172917198640861185-U8n0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACVTxisBvgDqhIInsprc-ArCUGZhJecm7Y0",
       team: true,
       lead: true,
+      mini: true,
+    },
+  ],
+  202405: [
+    {
+      name: "3rd Place",
+      label: "Parallax 2024",
+      subLabel: "UI/UX Hackathon",
+      organizer: "Rotract Club of Informatics Institute of Technology",
+      month: { year: 2024, month: 5 },
+      url: "https://www.linkedin.com/posts/rotaract-club-of-iit_parallax-ui-ux-activity-7200092993268191232-8E30?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACVTxisBvgDqhIInsprc-ArCUGZhJecm7Y0",
+    },
+    {
+      name: "Best Team",
+      label: "iCIIT 2024",
+      subLabel: "NLP Shared Task Competition",
+      organizer: "Informatics Institute of Technology",
+      month: { year: 2024, month: 5 },
+      url: "https://iciit.iit.ac.lk/",
+      team: true,
     },
   ],
 };
