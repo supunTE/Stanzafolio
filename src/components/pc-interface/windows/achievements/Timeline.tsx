@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@phosphor-icons/react";
 import clsx from "clsx";
 
@@ -147,6 +147,7 @@ function AchievementCards({
 
 function Card({ achievement }: { achievement: Achievement }) {
   const state = useCursorStore();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
@@ -155,6 +156,12 @@ function Card({ achievement }: { achievement: Achievement }) {
         "text-black bg-white max-w-[200px] min-w-[160px] p-2 shadow-md rounded-md border",
         "hover:shadow-lg hover:bg-neutral-700 hover:text-white transition-all duration-300 hover:border-transparent"
       )}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
     >
       {achievement.image ? (
         <div
@@ -203,6 +210,10 @@ function Card({ achievement }: { achievement: Achievement }) {
         {achievement.url ? (
           <div
             className="p-1 px-2 mt-2 bg-green-300 rounded-full flex items-center gap-2"
+            onClick={() => {
+              if (!isHovered) return;
+              window.open(achievement.url, "_blank");
+            }}
             onMouseOver={() => state.setMouseState(MouseState.LINK)}
             onMouseOut={() => state.resetMouseState()}
           >
@@ -216,14 +227,23 @@ function Card({ achievement }: { achievement: Achievement }) {
 }
 
 function MiniCard({ achievement }: { achievement: Achievement }) {
+  const state = useCursorStore();
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={clsx(
         "group order-last scale-90 origin-left hover:z-40",
-        "text-black bg-white max-w-[200px] min-w-[140px] p-2 shadow-md rounded-md z-10 opacity-40",
+        "text-black bg-white/70 max-w-[200px] min-w-[140px] p-2 shadow-md rounded-md z-10",
         "hover:opacity-100 hover:shadow-lg hover:bg-neutral-700 hover:text-white hover:border-neutral-900",
         "transition-all duration-300"
       )}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
     >
       <div className="text-sm font-semibold jetbrains-mono flex items-baseline gap-2 whitespace-nowrap">
         {achievement.name}{" "}
@@ -248,17 +268,25 @@ function MiniCard({ achievement }: { achievement: Achievement }) {
           "transition-all duration-300"
         )}
       >
-        {achievement.url ? (
-          <div className="p-1 px-2 mt-2 bg-green-300 rounded-full flex items-center gap-2">
-            <Link size={16} className="mb-1" />
-            Open Link
-          </div>
-        ) : null}
         {achievement.subLabel && (
           <div className="jetbrains-mono">{achievement.subLabel}</div>
         )}
         <span className="text-gray-600">
           Organizer: {achievement.organizer}
+          {achievement.url ? (
+            <div
+              className="p-1 px-2 mt-2 bg-green-300 rounded-full flex items-center gap-2"
+              onClick={() => {
+                if (!isHovered) return;
+                window.open(achievement.url, "_blank");
+              }}
+              onMouseOver={() => state.setMouseState(MouseState.LINK)}
+              onMouseOut={() => state.resetMouseState()}
+            >
+              <Link size={16} className="mb-1" />
+              Open Link
+            </div>
+          ) : null}
         </span>
       </div>
     </div>
