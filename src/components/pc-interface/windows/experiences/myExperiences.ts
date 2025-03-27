@@ -5,7 +5,8 @@ import {
 
 export type Time = {
   month?: number;
-  year: number;
+  year?: number;
+  present?: boolean;
 };
 
 export type Technology = {
@@ -236,10 +237,7 @@ export const myExperiences: Experience[] = [
   {
     title: "Software Engineer Intern",
     company: organizations.aiteam,
-    date: [
-      { year: 2021, month: 8 },
-      { year: 2022, month: 8 },
-    ],
+    date: [{ year: 2021, month: 8 }, { present: true }],
     description:
       "Completed a Software Engineering Internship with The AI Team, gaining experience in various technologies.",
     technologies: [

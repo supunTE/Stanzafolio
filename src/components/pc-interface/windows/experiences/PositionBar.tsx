@@ -192,12 +192,17 @@ function TimeCell({ experience }: { experience: Experience }) {
   const timeData = experience.date;
   return (
     <>
-      {timeData.map((time, index) => (
-        <span key={index}>
-          {time.month ? months[time.month - 0].slice(0, 3) : ""} {time.year}
-          {index !== timeData.length - 1 && " - "}
-        </span>
-      ))}
+      {timeData.map((time, index) => {
+        if (time.present) {
+          return <span key={index}>Present</span>;
+        }
+        return (
+          <span key={index}>
+            {time.month ? months[time.month - 0].slice(0, 3) : ""} {time.year}
+            {index !== timeData.length - 1 && " - "}
+          </span>
+        );
+      })}
     </>
   );
 }

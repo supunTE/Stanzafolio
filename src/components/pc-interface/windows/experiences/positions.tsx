@@ -28,13 +28,16 @@ export function Positions({ showExperiences }: PositionsProps) {
         Company/Organization
       </div>
       <div className={clsx(titlebarStyles, "hidden 2xl:block")}>Time</div>
-      {myExperiences.map((experience, index) => (
-        <PositionBar
-          key={index}
-          experience={experience}
-          last={index === myExperiences.length - 1}
-        />
-      ))}
+      {myExperiences
+        .slice()
+        .reverse()
+        .map((experience, index) => (
+          <PositionBar
+            key={index}
+            experience={experience}
+            last={index === myExperiences.length - 1}
+          />
+        ))}
     </motion.div>
   );
 }
