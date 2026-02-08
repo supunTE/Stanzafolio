@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 
 import { Window } from "../window";
 
+import { Blogs } from "./blogs";
+import { Certifications } from "./certifications";
 import { Positions } from "./positions";
 import { Projects } from "./projects";
 
 export function Experiences(): JSX.Element {
   const [showExperiences, setShowExperiences] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
+  const [showCertifications, setShowCertifications] = useState(false);
+  const [showBlogs, setShowBlogs] = useState(false);
 
   return (
     <Window id="experiences">
@@ -32,6 +36,24 @@ export function Experiences(): JSX.Element {
               isExpanded={showProjects}
             />
             <Projects showProjects={showProjects} />
+          </div>
+
+          <div className="mb-4">
+            <ToggleBar
+              label="Certifications"
+              onClick={() => setShowCertifications(!showCertifications)}
+              isExpanded={showCertifications}
+            />
+            <Certifications showCertifications={showCertifications} />
+          </div>
+
+          <div className="mb-4">
+            <ToggleBar
+              label="Blogs"
+              onClick={() => setShowBlogs(!showBlogs)}
+              isExpanded={showBlogs}
+            />
+            <Blogs showBlogs={showBlogs} />
           </div>
         </div>
       </div>

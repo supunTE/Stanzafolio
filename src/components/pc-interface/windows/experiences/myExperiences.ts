@@ -192,6 +192,60 @@ export const months = [
   "December",
 ];
 
+export type Certification = {
+  title: string;
+  issuer: string;
+  issuerUrl?: string;
+  date: Time;
+  credentialUrl?: string;
+};
+
+export const myCertifications: Certification[] = [
+  {
+    title: "Neural Networks and Deep Learning",
+    issuer: "Deeplearning.AI",
+    issuerUrl: "https://www.deeplearning.ai/",
+    date: { year: 2025, month: 8 },
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/records/GQTYLBIN1CXC",
+  },
+  {
+    title: "Microsoft Certified: Azure AI Fundamentals",
+    issuer: "Microsoft",
+    issuerUrl: "https://www.microsoft.com/",
+    date: { year: 2025, month: 4 },
+    credentialUrl:
+      "https://www.credly.com/badges/f7bd0306-ece4-40c5-877b-11b247d6dd79/linked_in_profile",
+  },
+  {
+    title: "Responsive Web Design",
+    issuer: "freeCodeCamp",
+    issuerUrl: "https://www.freecodecamp.org/",
+    date: { year: 2021, month: 10 },
+    credentialUrl:
+      "https://freecodecamp.org/certification/supTE/responsive-web-design",
+  },
+];
+
+export type Blog = {
+  title: string;
+  date: Time;
+  url: string;
+};
+
+export const myBlogs: Blog[] = [
+  {
+    title: "Building Razor: From Concept to Open-Source Type Racing Platform",
+    date: { year: 2025, month: 7 },
+    url: "https://medium.com/the-ai-team/building-razor-from-concept-to-open-source-type-racing-platform-0f2a7806b4be",
+  },
+  {
+    title: "My GCI Winning Experience",
+    date: { year: 2019, month: 0 },
+    url: "https://medium.com/@supunTE/my-gci-winning-experience-3479d8a085c9",
+  },
+];
+
 export type Experience = {
   title: string;
   company: Organization;
