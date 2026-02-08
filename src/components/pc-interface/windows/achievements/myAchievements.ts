@@ -158,7 +158,7 @@ export const myAchievements: Record<number, Achievement[]> = {
   202405: [
     {
       name: "3rd Place",
-      label: "Parallax 2024",
+      label: "Parallax",
       subLabel: "UI/UX Hackathon",
       organizer: "Rotract Club of Informatics Institute of Technology",
       month: { year: 2024, month: 5 },
@@ -166,12 +166,24 @@ export const myAchievements: Record<number, Achievement[]> = {
     },
     {
       name: "Best Team",
-      label: "iCIIT 2024",
+      label: "iCIIT",
       subLabel: "NLP Shared Task Competition",
       organizer: "Informatics Institute of Technology",
       month: { year: 2024, month: 5 },
       url: "https://iciit.iit.ac.lk/",
       team: true,
+    },
+  ],
+  202508: [
+    {
+      name: "Finalists",
+      label: "CodeStorm AI",
+      subLabel: "Buildathon",
+      organizer: "Yarl IT Hub, YGC",
+      month: { year: 2025, month: 8 },
+      url: "https://www.linkedin.com/posts/supunte_codestormai2025-yarlithub-aieducation-activity-7367840337093947392-Ohvv?utm_source=share&utm_medium=member_android&rcm=ACoAACVTxisBvgDqhIInsprc-ArCUGZhJecm7Y0",
+      team: true,
+      lead: true,
     },
   ],
 };

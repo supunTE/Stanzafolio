@@ -33,4 +33,5 @@ export const mySkills: Skill[] = [
   { name: "Flutter", icon: skillIcons.flutter },
   { name: "Figma", icon: skillIcons.figma },
   { name: "Postman", icon: skillIcons.postman },
+  { name: "LangGraph", icon: skillIcons.langgraph },
 ];

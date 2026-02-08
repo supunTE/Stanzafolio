@@ -66,7 +66,11 @@ const technologies: Partial<Record<technologyKeys, Technology>> = {
   },
   jekyll: {
     name: "Jekyll",
-    icon: otherTechnologies.jekyll,
+    icon: skillIcons.jekyll,
+  },
+  langgraph: {
+    name: "LangGraph",
+    icon: skillIcons.langgraph,
   },
 };
 
@@ -118,6 +122,21 @@ export const myProjects: Project[] = [
       technologies.threejs,
       technologies.typescript,
     ],
+  },
+  {
+    name: "News Navigator",
+    description: "An AI news aggregator and summarization web app.",
+    link: "https://github.com/supunTE/news-navigator",
+    color: "#000000",
+    technologies: [technologies.reactjs, technologies.typescript],
+  },
+  {
+    name: "Advanced Sinhala Editor",
+    description:
+      "An Latin-Sinhala transliterator with advanced Sinhala orthographic features",
+    link: "https://github.com/supunTE/adv-sinhala-editor",
+    color: "#000000",
+    technologies: [technologies.reactjs, technologies.typescript],
   },
   {
     name: "Kala Pavura",
@@ -237,7 +256,10 @@ export const myExperiences: Experience[] = [
   {
     title: "Software Engineer Intern",
     company: organizations.aiteam,
-    date: [{ year: 2021, month: 8 }, { present: true }],
+    date: [
+      { year: 2021, month: 8 },
+      { year: 2025, month: 7 },
+    ],
     description:
       "Completed a Software Engineering Internship with The AI Team, gaining experience in various technologies.",
     technologies: [
@@ -248,6 +270,22 @@ export const myExperiences: Experience[] = [
       technologies.flutter,
       technologies.python,
       technologies.gcp,
+    ],
+  },
+  {
+    title: "Software Engineer",
+    company: organizations.aiteam,
+    date: [{ year: 2025, month: 8 }, { present: true }],
+    description:
+      "Currently working as a Software Engineer at The AI Team, contributing to the development of innovative projects and solutions.",
+    technologies: [
+      technologies.reactjs,
+      technologies.nodejs,
+      technologies.typescript,
+      technologies.firebase,
+      technologies.python,
+      technologies.gcp,
+      technologies.langgraph,
     ],
   },
 ];

@@ -14,6 +14,7 @@ import ionic from "./ionic.png";
 import jekyll from "./jekyll.png";
 import jest from "./jest.png";
 import js from "./js.png";
+import langgraph from "./langgraph.png";
 import nextjs from "./nextjs.png";
 import nodejs from "./nodejs.png";
 import postman from "./postman.png";
@@ -30,7 +31,6 @@ export const otherTechnologies = {
   ionic,
   angular,
   gcp,
-  jekyll,
 };
 
 export const skillIcons = {
@@ -46,6 +46,8 @@ export const skillIcons = {
   html,
   jest,
   js,
+  jekyll,
+  langgraph,
   nextjs,
   nodejs,
   postman,
